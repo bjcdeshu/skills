@@ -42,7 +42,7 @@
 <td width="600" valign="top">
   <sub>04 / INVESTIGATION</sub><br>
   <h3><a href="skills/investigation/">公司调查 →</a></h3>
-  <p>核验公司主体、股权、人物与产品运营。</p>
+  <p>核验公司、人物与投资方，穿透股权并追查关联网络。</p>
 </td>
 </tr>
 <tr>
@@ -77,17 +77,17 @@
 
 | 分类 | Skill | 解决的问题 | 产出 |
 | --- | --- | --- | --- |
-| [公司调查](skills/investigation/) | [公司深度背景调查](skills/investigation/company-background-investigation/SKILL.md) | 核验公司主体、人物、股权、资金与产品运营，为入职、合作和投资研究建立可追溯的事实基础。 | 离线交互式 HTML、关系图谱、结构化调查数据与证据清单 |
+| [公司调查](skills/investigation/) | [通用主体与人物深度背景调查](skills/investigation/company-background-investigation/SKILL.md) | 以公司、人物、投资方、机构或产品为根节点，核验控制与股权穿透、任职与二跳共现伙伴、关联企业、资金与产品运营，适用于任何行业的入职、合作、投资与关联方尽调。 | 离线交互式 HTML（墨与印主题、关系图 2.0、路径查找）、结构化调查数据、证据清单与标准库分析工具 |
 
 <a id="previews"></a>
 
 ## 作品预览
 
-### [公司深度背景调查](skills/investigation/company-background-investigation/SKILL.md)
+### [通用主体与人物深度背景调查](skills/investigation/company-background-investigation/SKILL.md)
 
-DeepSeek 报告中的关系网络：从公司出发查看人物、资本与产品连接，并打开对应主体档案。
+墨与印主题下的交互式报告与关系网络（虚构演示）：从根节点出发查看股权穿透、任职与关联路径，并在侧栏打开主体档案与证据出处。
 
-[![公司深度背景调查：DeepSeek 关系网络与主体档案](assets/previews/company-background-investigation.png)](skills/investigation/company-background-investigation/SKILL.md)
+[![通用主体与人物深度背景调查：墨与印主题交互式报告与关系网络预览](assets/previews/company-background-investigation.png)](skills/investigation/company-background-investigation/SKILL.md)
 
 查看完整案例：[DeepSeek](https://research.zrainbow1257.com/reports/deepseek/) · [Tipsy](https://research.zrainbow1257.com/reports/tipsy/) · [MiniMax](https://research.zrainbow1257.com/reports/minimax/)
 

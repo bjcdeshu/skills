@@ -4,9 +4,9 @@
 
 ## 安装与调用
 
-解压后保留完整 `company-background-investigation/` 文件夹，其中 `SKILL.md` 是入口，`references/` 是调查规范，`scripts/` 和 `assets/` 是资料检查与 HTML 构建资源。仅复制入口文件会丢失参考资料和模板。
+解压后保留完整 `company-background-investigation/` 文件夹，其中 `SKILL.md` 是入口，`references/` 是调查规范，`scripts/` 是资料检查、网络分析、合并比较与 HTML 构建工具，`assets/` 是模板与演示数据。仅复制入口文件会丢失参考资料和模板。技能目录名沿用 `company-background-investigation`，可调查公司、人物、投资方、机构、产品与品牌。
 
-先查看效果可直接用浏览器打开 `assets/example-report.html`，其全部资料为虚构样例。正式调查按独立公司资料生成新文件。
+先查看效果可直接用浏览器打开 `assets/example-report.html`，其全部资料为虚构样例；人物根效果可用 `assets/example-person-data.json` 构建。正式调查按独立资料生成新文件。
 
 ### 原生支持 Agent Skills 的环境
 
@@ -16,8 +16,8 @@
 
 | 宿主 | 当前用户可用 | 当前项目可用 | 直接调用 |
 | --- | --- | --- | --- |
-| Claude Code | `~/.claude/skills/company-background-investigation/` | `<项目>/.claude/skills/company-background-investigation/` | `/company-background-investigation 调查目标公司` |
-| Codex CLI / IDE | `~/.agents/skills/company-background-investigation/` | `<项目>/.agents/skills/company-background-investigation/` | `$company-background-investigation 调查目标公司` |
+| Claude Code | `~/.claude/skills/company-background-investigation/` | `<项目>/.claude/skills/company-background-investigation/` | `/company-background-investigation 调查目标公司或人物` |
+| Codex CLI / IDE | `~/.agents/skills/company-background-investigation/` | `<项目>/.agents/skills/company-background-investigation/` | `$company-background-investigation 调查目标公司或人物` |
 
 `~` 表示当前用户的主目录；个人与项目目录二选一即可。安装后在宿主的技能列表中确认名称，再发起调查。其他 Agent Skills 客户端按其文档选择安装目录。
 
@@ -27,12 +27,14 @@
 
 ```text
 请先读取 company-background-investigation/SKILL.md，按其工作流程调查：
-公司或品牌：［填写名称］
-官网或法域：［填写已知线索］
-调查目的：［入职 / 合作 / 投资研究 / 其他］
-重点：［股东、核心人物、资本链、实际案例等］
+根节点类型：［公司 / 人物 / 投资方 / 机构 / 产品 / 品牌］
+名称与标识：［名称、官网、登记号、产品 ID 等已知线索］
+法域：［填写已知线索］
+调查目的：［入职 / 合作 / 投资研究 / 供应商或关联方尽调 / 其他］
+重点：［股东与穿透、核心人物、共现伙伴、资本链、实际案例等］
 
-以该公司为中心逐层延伸人物、关联企业、产品和运营关系。
+以该根节点为中心逐层延伸人物、关联组织、产品和运营关系；
+涉及人物时完成二跳共现与同名排查。
 按需要读取技能目录中的参考文件、模板和脚本，完成公开检索、
 证据归档、神经网络图和自包含 HTML；同时保存结构化调查数据。
 ```
@@ -65,7 +67,7 @@
 | 读取用户资料与历史成稿 | 本地文件或用户授权的文档服务 | 先取得实际内容，再建立版本基线 |
 | 读取登记附件和截图 | PDF/表格读取、浏览器或受支持截图 | 记录页码、行号、产品 ID、界面与日期 |
 | 维护结构化证据 | UTF-8 JSON 文件读写 | 按 data-model.md 创建独立 dossier.json |
-| 构建离线报告 | Python 3.10+、本地文件读写 | 执行随附标准库脚本，无需安装第三方 Python 或 JavaScript 包 |
+| 分析与构建 | Python 3.10+、本地文件读写 | 执行随附标准库脚本完成验证、穿透与共现分析、合并比较和 HTML 构建，无需安装第三方 Python 或 JavaScript 包 |
 | 查看交互 | 现代浏览器或宿主 HTML 预览 | 打开产物，检查搜索、图谱、档案、图片、移动布局与打印 |
 | 保存交付 | 本地输出或宿主附件服务 | 保存 HTML 与 JSON，给出可访问路径或附件 |
 
@@ -73,7 +75,7 @@
 
 ## 二、定位文件和执行命令
 
-从已加载 `SKILL.md` 所在目录解析 `scripts/`、`references/`、`assets/`。不要把当前工作目录当作技能目录，也不要在技能包里保存被调查公司的实际证据。
+从已加载 `SKILL.md` 所在目录解析 `scripts/`、`references/`、`assets/`。不要把当前工作目录当作技能目录，也不要在技能包里保存被调查对象的实际证据。
 
 先建立独立的输出目录，在该目录保存 `dossier.json`、取回的图片、原始附件和研究日志。原始/派生证据通过 evidence_manifest 连接，实际文件保存后计算哈希。图片与证据相对路径以数据 JSON 所在目录为基准；其他机器继续工作时同时带上相应图片与附件。
 
@@ -81,24 +83,47 @@
 
 ```bash
 python3 -X utf8 "<skill-dir>/scripts/validate_dossier.py" "<work-dir>/dossier.json" --json
-python3 -X utf8 "<skill-dir>/scripts/build_report.py" "<work-dir>/dossier.json" --out "<work-dir>/company-report.html"
+python3 -X utf8 "<skill-dir>/scripts/analyze_network.py" "<work-dir>/dossier.json" --ownership --json
+python3 -X utf8 "<skill-dir>/scripts/build_report.py" "<work-dir>/dossier.json" --out "<work-dir>/report.html"
+```
+
+网络分析：
+
+```bash
+python3 -X utf8 "<skill-dir>/scripts/analyze_network.py" "<work-dir>/dossier.json" --cooccur "<person-id>" --json
+python3 -X utf8 "<skill-dir>/scripts/analyze_network.py" "<work-dir>/dossier.json" --path "<from-id>" "<to-id>" --max-hops 6 --include-historical
+python3 -X utf8 "<skill-dir>/scripts/analyze_network.py" "<work-dir>/dossier.json" --ownership --threshold 25 --out "<work-dir>/analytics.json"
+```
+
+跨案件合并：
+
+```bash
+python3 -X utf8 "<skill-dir>/scripts/merge_dossiers.py" "<case-a>/dossier.json" "<case-b>/dossier.json" --root "<root-id>" --out "<work-dir>/merged.json" --report "<work-dir>/merge-report.json"
 ```
 
 更新报告：
 
 ```bash
 python3 -X utf8 "<skill-dir>/scripts/validate_dossier.py" "<work-dir>/dossier.json" --previous "<work-dir>/previous.json" --json
+python3 -X utf8 "<skill-dir>/scripts/diff_dossier.py" "<work-dir>/previous.json" "<work-dir>/dossier.json" --md --out "<work-dir>/changes.md"
 ```
 
 试运行随附虚构数据：
 
 ```bash
 python3 -X utf8 "<skill-dir>/scripts/build_report.py" "<skill-dir>/assets/example-data.json" --out "<work-dir>/example-report.html"
+python3 -X utf8 "<skill-dir>/scripts/build_report.py" "<skill-dir>/assets/example-person-data.json" --out "<work-dir>/example-person-report.html"
+```
+
+回归测试（维护脚本时运行）：
+
+```bash
+python3 -X utf8 -m unittest discover -s "<skill-dir>/scripts/tests" -v
 ```
 
 Windows 可把命令前缀 `python3 -X utf8` 改为已安装 Python 的 `py -3 -X utf8` 或 `python -X utf8`；其余参数保持不变。输入、输出和图片路径包含空格时始终使用引号。报告构建离线执行；网上调查阶段使用宿主提供的联网工具。
 
-阅读 HTML 使用支持 ES2021 和 `<dialog>` 的现代浏览器，并启用 JavaScript。模板使用系统字体，界面语言为中文时使用具备中文字形的字体。Node.js 仅用于可选的 JavaScript 语法检查。
+阅读 HTML 使用支持 ES2021 和 `<dialog>` 的现代浏览器，并启用 JavaScript；深色模式跟随系统设置，也可在页面中切换。模板使用系统字体，界面语言为中文时使用具备中文字形的字体。Node.js 仅用于可选的 JavaScript 语法检查。
 
 ## 三、根据实际能力完成任务
 
@@ -119,6 +144,7 @@ Windows 可把命令前缀 `python3 -X utf8` 改为已安装 Python 的 `py -3 -
 - 示例中的实体、网址、图片、金额与角色只承担教学用途；正式资料从当前任务的原始来源建立。
 - 案例中的历史更正不构成其他用户或公司的历史；只有实际取得旧报告时才执行增量保留。
 - 当前任务的原始材料、私人附件、账号标识和下载凭据留在该任务工作目录，避免混入可分享的技能包。
+- 多个案件需要联合分析时，用 `merge_dossiers.py` 生成新的合并文件，各案件原始 dossier.json 保持不变。
 - 共享新报告时按用户要求处理非公开材料；公共事实仍保留来源与日期。
 
 ## 五、协作与模型选择

@@ -1,0 +1,2561 @@
+{
+  "schema_version": 1,
+  "meta": {
+    "title": "林知远｜人物背景调查（虚构示例）",
+    "subtitle": "人物根示例 · 任职、持股、共现伙伴与隐性关联；所有主体、来源与日期均为虚构",
+    "root_id": "person-linzhiyuan",
+    "root_type": "person",
+    "purpose": "合作尽调：评估与该人物控制的企业开展长期供货合作前的控制关系与关联方",
+    "as_of": "2024-06-30",
+    "snapshot_at": "2024-07-01",
+    "generated_at": "2024-07-02",
+    "summary": "林知远经直接持股和知远控股穿透控制星衍机器人100%，再经远山天使投资并出任董事的北辰运动控制向星衍供货，二者同址登记。周砚与何晓雯分别以监事、财务负责人身份贯穿其四家和三家企业，覆盖存续与已注销、吊销主体，是理解其企业群治理的关键伙伴。",
+    "core_ids": [
+      "person-linzhiyuan",
+      "co-xingyan-robotics",
+      "co-zhiyuan-holding",
+      "investor-yuanshan-angel",
+      "co-beichen-motion",
+      "person-zhouyan",
+      "person-hexiaowen",
+      "person-songqi",
+      "co-qingmu-sensing",
+      "co-lanqiao-software"
+    ],
+    "language": "zh-CN",
+    "is_example": true,
+    "ui_labels": {
+      "reportKind": "人物背景调查",
+      "judgmentLabel": "人物判断",
+      "questionsTitle": "读懂这位人物"
+    },
+    "navigation": [
+      {
+        "label": "先认识人物",
+        "target": "overview"
+      },
+      {
+        "label": "任职与持股",
+        "target": "section-roles"
+      },
+      {
+        "label": "关联网络",
+        "target": "network"
+      },
+      {
+        "label": "股权穿透",
+        "target": "section-capital"
+      },
+      {
+        "label": "共现伙伴",
+        "target": "section-partners"
+      },
+      {
+        "label": "隐性关联与同名排查",
+        "target": "section-signals"
+      },
+      {
+        "label": "核心问题",
+        "target": "questions"
+      },
+      {
+        "label": "完整资料档案",
+        "target": "archives"
+      }
+    ]
+  },
+  "metrics": [
+    {
+      "label": "星衍机器人穿透权益",
+      "value": "100%",
+      "detail": "2024-06-30；直接60% + 经知远控股40%",
+      "sources": [
+        "S-REG-XY",
+        "S-REG-HOLD"
+      ],
+      "claim_ids": [
+        "claim-penetration-xy"
+      ]
+    },
+    {
+      "label": "关联组织",
+      "value": "6家",
+      "detail": "存续4家；已注销1家；已吊销1家",
+      "sources": [
+        "S-REG-XY",
+        "S-REG-HOLD",
+        "S-REG-YS",
+        "S-REG-BC",
+        "S-REG-QM",
+        "S-REG-LQ"
+      ]
+    },
+    {
+      "label": "最高频共现伙伴",
+      "value": "周砚 · 4家",
+      "detail": "监事；存续2家、注销或吊销2家",
+      "sources": [
+        "S-REG-XY",
+        "S-REG-HOLD",
+        "S-REG-QM",
+        "S-REG-LQ"
+      ],
+      "claim_ids": [
+        "claim-zhou-supervisor"
+      ]
+    },
+    {
+      "label": "天使投资",
+      "value": "400万元",
+      "detail": "2022-09-15；远山天使持北辰运动控制8%",
+      "sources": [
+        "S-REG-BC",
+        "S-MEDIA-BC"
+      ],
+      "claim_ids": [
+        "claim-ys-bc"
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "id": "person-linzhiyuan",
+      "name": "林知远",
+      "type": "person",
+      "summary": "连续创业者与天使投资人：先后创办蓝桥软件、青木传感与星衍机器人，经知远控股和远山天使持有并投资机器人上下游企业。",
+      "sources": [
+        "S-REG-XY",
+        "S-REG-HOLD",
+        "S-REG-QM",
+        "S-REG-LQ",
+        "S-OFF-XY"
+      ],
+      "short_name": "林知远",
+      "role": "星衍机器人创始人兼CEO；知远控股执行董事",
+      "status": "current",
+      "cluster": "root",
+      "importance": 5,
+      "identity_basis": {
+        "anchors": {
+          "name": "match",
+          "organization": "match",
+          "time": "match",
+          "place_or_network": "match"
+        },
+        "decision": "merge",
+        "notes": "四家企业登记中的同名人物共用连续任期与重叠伙伴网络，作为同一人物建档。",
+        "claim_ids": [
+          "claim-zhou-supervisor"
+        ]
+      },
+      "fields": [
+        {
+          "label": "当前主要职务",
+          "value": "星衍机器人法定代表人、执行董事兼总经理",
+          "sources": [
+            "S-REG-XY"
+          ]
+        },
+        {
+          "label": "穿透控制",
+          "value": "星衍机器人 100%（直接60% + 经知远控股40%）",
+          "sources": [
+            "S-REG-XY",
+            "S-REG-HOLD",
+            "A001"
+          ],
+          "claim_ids": [
+            "claim-penetration-xy"
+          ]
+        },
+        {
+          "label": "关联组织",
+          "value": "存续4家；已注销1家；已吊销1家",
+          "sources": [
+            "S-REG-XY",
+            "S-REG-HOLD",
+            "S-REG-YS",
+            "S-REG-BC",
+            "S-REG-QM",
+            "S-REG-LQ"
+          ]
+        },
+        {
+          "label": "公开职业身份",
+          "value": "华西理工大学机器人学院产业导师（2023–2026）",
+          "sources": [
+            "S-OFF-INST"
+          ]
+        }
+      ],
+      "career": [
+        {
+          "date": "2011-07-01",
+          "title": "联合创办蓝桥软件",
+          "text": "与宋启各持股50%；公司于2017-04-12被吊销营业执照。",
+          "sources": [
+            "S-REG-LQ"
+          ]
+        },
+        {
+          "date": "2014-05-20",
+          "title": "联合创办青木传感",
+          "text": "持股70%并任执行董事兼总经理；公司于2019-08-30核准注销。",
+          "sources": [
+            "S-REG-QM"
+          ]
+        },
+        {
+          "date": "2019-11-05",
+          "title": "设立知远控股",
+          "text": "持股100%并任执行董事，作为后续持股与投资平台。",
+          "sources": [
+            "S-REG-HOLD"
+          ]
+        },
+        {
+          "date": "2020-03-18",
+          "title": "创办星衍机器人",
+          "text": "任法定代表人、执行董事兼总经理；官网列为创始人兼CEO。",
+          "sources": [
+            "S-REG-XY",
+            "S-OFF-XY"
+          ]
+        },
+        {
+          "date": "2021-06-01",
+          "title": "设立远山天使合伙",
+          "text": "以有限合伙人身份出资99%，知远控股任普通合伙人。",
+          "sources": [
+            "S-REG-YS"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "person-zhouyan",
+      "name": "周砚",
+      "type": "person",
+      "summary": "林知远的长期合伙人：青木传感联合创始人，并在林知远参与的四家企业登记为监事。",
+      "sources": [
+        "S-REG-XY",
+        "S-REG-HOLD",
+        "S-REG-QM",
+        "S-REG-LQ"
+      ],
+      "role": "监事（四家企业）；青木传感联合创始人",
+      "status": "current",
+      "cluster": "people",
+      "importance": 4,
+      "career": [
+        {
+          "date": "2011-07-01",
+          "title": "蓝桥软件监事",
+          "text": "任期至2017-04-12吊销。",
+          "sources": [
+            "S-REG-LQ"
+          ]
+        },
+        {
+          "date": "2014-05-20",
+          "title": "青木传感联合创始人、监事",
+          "text": "持股25%，任期至2019-08-30注销。",
+          "sources": [
+            "S-REG-QM"
+          ]
+        },
+        {
+          "date": "2019-11-05",
+          "title": "知远控股监事",
+          "text": "登记快照截至观察日仍列该职务。",
+          "sources": [
+            "S-REG-HOLD"
+          ]
+        },
+        {
+          "date": "2020-03-18",
+          "title": "星衍机器人监事",
+          "text": "登记快照截至观察日仍列该职务。",
+          "sources": [
+            "S-REG-XY"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "person-hexiaowen",
+      "name": "何晓雯",
+      "type": "person",
+      "summary": "在林知远三家企业登记为财务负责人，曾持有青木传感5%股份。",
+      "sources": [
+        "S-REG-XY",
+        "S-REG-HOLD",
+        "S-REG-QM"
+      ],
+      "role": "财务负责人（三家企业）",
+      "status": "current",
+      "cluster": "people",
+      "importance": 3,
+      "career": [
+        {
+          "date": "2014-05-20",
+          "title": "青木传感财务负责人、小股东",
+          "text": "持股5%，任期至2019-08-30注销。",
+          "sources": [
+            "S-REG-QM"
+          ]
+        },
+        {
+          "date": "2019-11-05",
+          "title": "知远控股财务负责人",
+          "text": "登记快照截至观察日仍列该职务。",
+          "sources": [
+            "S-REG-HOLD"
+          ]
+        },
+        {
+          "date": "2020-03-18",
+          "title": "星衍机器人财务负责人",
+          "text": "登记快照截至观察日仍列该职务。",
+          "sources": [
+            "S-REG-XY"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "person-songqi",
+      "name": "宋启",
+      "type": "person",
+      "summary": "蓝桥软件联合创始人兼执行董事，现为星衍机器人首席技术官。",
+      "sources": [
+        "S-REG-LQ",
+        "S-OFF-XY"
+      ],
+      "role": "星衍机器人首席技术官",
+      "status": "current",
+      "cluster": "people",
+      "importance": 3,
+      "career": [
+        {
+          "date": "2011-07-01",
+          "title": "蓝桥软件联合创始人、执行董事",
+          "text": "持股50%，公司于2017-04-12被吊销。",
+          "sources": [
+            "S-REG-LQ"
+          ]
+        },
+        {
+          "date": "2024-05-10",
+          "title": "星衍机器人首席技术官",
+          "text": "官网团队页于观察日列示该职务；登记主要人员未列。",
+          "sources": [
+            "S-OFF-XY"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "person-linzhiyuan-homonym",
+      "name": "林知远（南风贸易）",
+      "type": "person",
+      "summary": "南风贸易法定代表人，与本报告人物同名同城；机构、时间与关系网均无重叠，按同名候选单独建档。",
+      "sources": [
+        "S-REG-NF"
+      ],
+      "role": "南风贸易法定代表人",
+      "status": "candidate",
+      "cluster": "candidates",
+      "importance": 1,
+      "aliases": [
+        "林知远"
+      ],
+      "identity_basis": {
+        "anchors": {
+          "name": "match",
+          "organization": "conflict",
+          "time": "unknown",
+          "place_or_network": "match"
+        },
+        "decision": "candidate",
+        "notes": "仅姓名与城市两项锚点一致；登记机构、行业和伙伴网络均不同，不与根人物合并。",
+        "claim_ids": [
+          "claim-homonym"
+        ]
+      },
+      "fields": [
+        {
+          "label": "登记任职",
+          "value": "南风贸易有限公司法定代表人",
+          "sources": [
+            "S-REG-NF"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "co-xingyan-robotics",
+      "name": "星衍机器人科技有限公司",
+      "type": "company",
+      "summary": "林知远创办并穿透控制100%的协作机器人企业，研发与销售XY-6协作机械臂。",
+      "sources": [
+        "S-REG-XY",
+        "S-OFF-XY"
+      ],
+      "short_name": "星衍机器人",
+      "status": "current",
+      "cluster": "active",
+      "importance": 5,
+      "registry_status": "active",
+      "identifiers": [
+        {
+          "scheme": "cn_uscc",
+          "value": "91EXAMPLE2020XY0001",
+          "jurisdiction": "CN"
+        },
+        {
+          "scheme": "domain",
+          "value": "xingyan-robotics.example"
+        }
+      ],
+      "fields": [
+        {
+          "label": "登记状态",
+          "value": "存续；成立于2020-03-18",
+          "sources": [
+            "S-REG-XY"
+          ]
+        },
+        {
+          "label": "股东",
+          "value": "林知远60%；知远控股40%",
+          "sources": [
+            "S-REG-XY"
+          ],
+          "claim_ids": [
+            "claim-own-xy"
+          ]
+        },
+        {
+          "label": "住所",
+          "value": "示例市高新区创新路88号B座",
+          "sources": [
+            "S-REG-XY"
+          ]
+        }
+      ],
+      "image_ids": [
+        "image-xy6"
+      ]
+    },
+    {
+      "id": "co-zhiyuan-holding",
+      "name": "知远控股有限公司",
+      "type": "company",
+      "summary": "林知远100%持股的持股平台，持有星衍机器人40%并担任远山天使普通合伙人。",
+      "sources": [
+        "S-REG-HOLD"
+      ],
+      "short_name": "知远控股",
+      "status": "current",
+      "cluster": "active",
+      "importance": 4,
+      "registry_status": "active",
+      "identifiers": [
+        {
+          "scheme": "cn_uscc",
+          "value": "91EXAMPLE2019ZY0002",
+          "jurisdiction": "CN"
+        }
+      ],
+      "fields": [
+        {
+          "label": "登记状态",
+          "value": "存续；成立于2019-11-05",
+          "sources": [
+            "S-REG-HOLD"
+          ]
+        },
+        {
+          "label": "股东",
+          "value": "林知远100%",
+          "sources": [
+            "S-REG-HOLD"
+          ],
+          "claim_ids": [
+            "claim-own-holding"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "co-qingmu-sensing",
+      "name": "青木传感技术有限公司",
+      "type": "company",
+      "summary": "林知远与周砚联合创办的传感器企业，2019-08-30核准注销；旧域名此后跳转至星衍机器人。",
+      "sources": [
+        "S-REG-QM",
+        "S-ARC-DOM"
+      ],
+      "short_name": "青木传感",
+      "status": "historical",
+      "cluster": "dissolved",
+      "importance": 3,
+      "registry_status": "dissolved",
+      "identifiers": [
+        {
+          "scheme": "cn_uscc",
+          "value": "91EXAMPLE2014QM0003",
+          "jurisdiction": "CN"
+        },
+        {
+          "scheme": "domain",
+          "value": "qingmu-sensing.example"
+        }
+      ],
+      "fields": [
+        {
+          "label": "登记状态",
+          "value": "已注销；2014-05-20成立，2019-08-30核准注销",
+          "sources": [
+            "S-REG-QM"
+          ],
+          "claim_ids": [
+            "claim-qm-dissolved"
+          ]
+        },
+        {
+          "label": "注销前股东",
+          "value": "林知远70%；周砚25%；何晓雯5%",
+          "sources": [
+            "S-REG-QM"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "co-lanqiao-software",
+      "name": "蓝桥软件开发有限公司",
+      "type": "company",
+      "summary": "林知远与宋启联合创办的软件企业，2017-04-12因连续未报送年度报告被吊销营业执照。",
+      "sources": [
+        "S-REG-LQ"
+      ],
+      "short_name": "蓝桥软件",
+      "status": "historical",
+      "cluster": "dissolved",
+      "importance": 2,
+      "registry_status": "revoked",
+      "identifiers": [
+        {
+          "scheme": "cn_uscc",
+          "value": "91EXAMPLE2011LQ0004",
+          "jurisdiction": "CN"
+        }
+      ],
+      "fields": [
+        {
+          "label": "登记状态",
+          "value": "已吊销；2011-07-01成立，2017-04-12吊销",
+          "sources": [
+            "S-REG-LQ"
+          ],
+          "claim_ids": [
+            "claim-lq-revoked"
+          ]
+        },
+        {
+          "label": "吊销前股东",
+          "value": "林知远50%；宋启50%",
+          "sources": [
+            "S-REG-LQ"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "investor-yuanshan-angel",
+      "name": "远山天使创业投资合伙企业（有限合伙）",
+      "type": "investor",
+      "summary": "林知远的天使投资载体：本人有限合伙份额99%，知远控股任普通合伙人；持有北辰运动控制8%。",
+      "sources": [
+        "S-REG-YS"
+      ],
+      "short_name": "远山天使",
+      "status": "current",
+      "cluster": "capital",
+      "importance": 4,
+      "registry_status": "active",
+      "identifiers": [
+        {
+          "scheme": "cn_uscc",
+          "value": "91EXAMPLE2021YS0005",
+          "jurisdiction": "CN"
+        }
+      ],
+      "fields": [
+        {
+          "label": "合伙人",
+          "value": "林知远（有限合伙人）99%；知远控股（普通合伙人兼执行事务合伙人）1%",
+          "sources": [
+            "S-REG-YS"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "co-beichen-motion",
+      "name": "北辰运动控制科技有限公司",
+      "type": "company",
+      "summary": "远山天使投资的运动控制模组企业；林知远任董事，与星衍机器人同址并向其供货。",
+      "sources": [
+        "S-REG-BC",
+        "S-MEDIA-BC"
+      ],
+      "short_name": "北辰运动控制",
+      "status": "current",
+      "cluster": "active",
+      "importance": 3,
+      "registry_status": "active",
+      "identifiers": [
+        {
+          "scheme": "cn_uscc",
+          "value": "91EXAMPLE2021BC0006",
+          "jurisdiction": "CN"
+        }
+      ],
+      "fields": [
+        {
+          "label": "关联股东",
+          "value": "远山天使8%（2022-09-15登记）",
+          "sources": [
+            "S-REG-BC"
+          ],
+          "claim_ids": [
+            "claim-ys-bc"
+          ]
+        },
+        {
+          "label": "住所",
+          "value": "示例市高新区创新路88号B座",
+          "sources": [
+            "S-REG-BC"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "institution-huaxi-robotics",
+      "name": "华西理工大学机器人学院",
+      "type": "institution",
+      "summary": "聘请林知远为2023–2026年度产业导师的高校院系。",
+      "sources": [
+        "S-OFF-INST"
+      ],
+      "short_name": "华西机器人学院",
+      "status": "current",
+      "cluster": "institutions",
+      "importance": 2
+    },
+    {
+      "id": "product-xy6-arm",
+      "name": "XY-6 协作机械臂",
+      "type": "product",
+      "summary": "星衍机器人于2023-04发布的六轴协作机械臂，官网列为自研产品。",
+      "sources": [
+        "S-OFF-XY"
+      ],
+      "short_name": "XY-6",
+      "status": "current",
+      "cluster": "products",
+      "importance": 3,
+      "identifiers": [
+        {
+          "scheme": "product_model",
+          "value": "XY-6"
+        }
+      ],
+      "image_ids": [
+        "image-xy6"
+      ],
+      "fields": [
+        {
+          "label": "发布时间",
+          "value": "2023-04（官网口径）",
+          "sources": [
+            "S-OFF-XY"
+          ]
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel-lin-xy-own",
+      "from": "person-linzhiyuan",
+      "to": "co-xingyan-robotics",
+      "type": "ownership",
+      "label": "直接持股 60%",
+      "sources": [
+        "S-REG-XY"
+      ],
+      "nature": "capital",
+      "percent": 60,
+      "role": "股东",
+      "role_code": "shareholder",
+      "valid_from": "2020-03-18",
+      "claim_ids": [
+        "claim-own-xy"
+      ],
+      "status": "current"
+    },
+    {
+      "id": "rel-holding-xy-own",
+      "from": "co-zhiyuan-holding",
+      "to": "co-xingyan-robotics",
+      "type": "ownership",
+      "label": "持股 40%",
+      "sources": [
+        "S-REG-XY"
+      ],
+      "nature": "capital",
+      "percent": 40,
+      "role": "股东",
+      "role_code": "shareholder",
+      "valid_from": "2020-03-18",
+      "claim_ids": [
+        "claim-own-xy"
+      ],
+      "status": "current"
+    },
+    {
+      "id": "rel-lin-xy-found",
+      "from": "person-linzhiyuan",
+      "to": "co-xingyan-robotics",
+      "type": "founding",
+      "label": "创始人",
+      "sources": [
+        "S-OFF-XY",
+        "S-REG-XY"
+      ],
+      "nature": "business",
+      "role": "创始人兼CEO",
+      "role_code": "founder",
+      "date": "2020-03-18",
+      "status": "current"
+    },
+    {
+      "id": "rel-lin-xy-officer",
+      "from": "person-linzhiyuan",
+      "to": "co-xingyan-robotics",
+      "type": "officer",
+      "label": "法定代表人、执行董事兼总经理",
+      "sources": [
+        "S-REG-XY"
+      ],
+      "nature": "business",
+      "role": "法定代表人、执行董事兼总经理",
+      "role_code": "legal_rep",
+      "valid_from": "2020-03-18",
+      "status": "current"
+    },
+    {
+      "id": "rel-zhou-xy-sup",
+      "from": "person-zhouyan",
+      "to": "co-xingyan-robotics",
+      "type": "officer",
+      "label": "监事",
+      "sources": [
+        "S-REG-XY"
+      ],
+      "nature": "business",
+      "role": "监事",
+      "role_code": "supervisor",
+      "valid_from": "2020-03-18",
+      "claim_ids": [
+        "claim-zhou-supervisor"
+      ],
+      "status": "current"
+    },
+    {
+      "id": "rel-he-xy-cfo",
+      "from": "person-hexiaowen",
+      "to": "co-xingyan-robotics",
+      "type": "employment",
+      "label": "财务负责人",
+      "sources": [
+        "S-REG-XY"
+      ],
+      "nature": "business",
+      "role": "财务负责人",
+      "role_code": "executive",
+      "valid_from": "2020-03-18",
+      "claim_ids": [
+        "claim-he-finance"
+      ],
+      "status": "current"
+    },
+    {
+      "id": "rel-song-xy-cto",
+      "from": "person-songqi",
+      "to": "co-xingyan-robotics",
+      "type": "employment",
+      "label": "首席技术官",
+      "sources": [
+        "S-OFF-XY"
+      ],
+      "nature": "business",
+      "role": "首席技术官",
+      "role_code": "executive",
+      "detail": "官网团队页列示；登记主要人员未列。",
+      "status": "current"
+    },
+    {
+      "id": "rel-xy-product",
+      "from": "co-xingyan-robotics",
+      "to": "product-xy6-arm",
+      "type": "creation",
+      "label": "研发并销售",
+      "sources": [
+        "S-OFF-XY"
+      ],
+      "nature": "business",
+      "date": "2023-04",
+      "status": "current"
+    },
+    {
+      "id": "rel-lin-holding-own",
+      "from": "person-linzhiyuan",
+      "to": "co-zhiyuan-holding",
+      "type": "ownership",
+      "label": "持股 100%",
+      "sources": [
+        "S-REG-HOLD"
+      ],
+      "nature": "capital",
+      "percent": 100,
+      "role": "股东",
+      "role_code": "shareholder",
+      "valid_from": "2019-11-05",
+      "claim_ids": [
+        "claim-own-holding"
+      ],
+      "status": "current"
+    },
+    {
+      "id": "rel-lin-holding-officer",
+      "from": "person-linzhiyuan",
+      "to": "co-zhiyuan-holding",
+      "type": "officer",
+      "label": "执行董事",
+      "sources": [
+        "S-REG-HOLD"
+      ],
+      "nature": "business",
+      "role": "执行董事",
+      "role_code": "director",
+      "valid_from": "2019-11-05",
+      "status": "current"
+    },
+    {
+      "id": "rel-zhou-holding-sup",
+      "from": "person-zhouyan",
+      "to": "co-zhiyuan-holding",
+      "type": "officer",
+      "label": "监事",
+      "sources": [
+        "S-REG-HOLD"
+      ],
+      "nature": "business",
+      "role": "监事",
+      "role_code": "supervisor",
+      "valid_from": "2019-11-05",
+      "claim_ids": [
+        "claim-zhou-supervisor"
+      ],
+      "status": "current"
+    },
+    {
+      "id": "rel-he-holding-cfo",
+      "from": "person-hexiaowen",
+      "to": "co-zhiyuan-holding",
+      "type": "employment",
+      "label": "财务负责人",
+      "sources": [
+        "S-REG-HOLD"
+      ],
+      "nature": "business",
+      "role": "财务负责人",
+      "role_code": "executive",
+      "valid_from": "2019-11-05",
+      "claim_ids": [
+        "claim-he-finance"
+      ],
+      "status": "current"
+    },
+    {
+      "id": "rel-lin-qm-own",
+      "from": "person-linzhiyuan",
+      "to": "co-qingmu-sensing",
+      "type": "ownership",
+      "label": "持股 70%（至注销）",
+      "sources": [
+        "S-REG-QM"
+      ],
+      "nature": "capital",
+      "percent": 70,
+      "role": "股东",
+      "role_code": "shareholder",
+      "claim_ids": [
+        "claim-qm-dissolved"
+      ],
+      "status": "historical",
+      "valid_from": "2014-05-20",
+      "valid_to": "2019-08-30"
+    },
+    {
+      "id": "rel-zhou-qm-own",
+      "from": "person-zhouyan",
+      "to": "co-qingmu-sensing",
+      "type": "ownership",
+      "label": "持股 25%（至注销）",
+      "sources": [
+        "S-REG-QM"
+      ],
+      "nature": "capital",
+      "percent": 25,
+      "role": "股东",
+      "role_code": "shareholder",
+      "claim_ids": [
+        "claim-qm-dissolved"
+      ],
+      "status": "historical",
+      "valid_from": "2014-05-20",
+      "valid_to": "2019-08-30"
+    },
+    {
+      "id": "rel-he-qm-own",
+      "from": "person-hexiaowen",
+      "to": "co-qingmu-sensing",
+      "type": "ownership",
+      "label": "持股 5%（至注销）",
+      "sources": [
+        "S-REG-QM"
+      ],
+      "nature": "capital",
+      "percent": 5,
+      "role": "股东",
+      "role_code": "shareholder",
+      "claim_ids": [
+        "claim-qm-dissolved"
+      ],
+      "status": "historical",
+      "valid_from": "2014-05-20",
+      "valid_to": "2019-08-30"
+    },
+    {
+      "id": "rel-lin-qm-found",
+      "from": "person-linzhiyuan",
+      "to": "co-qingmu-sensing",
+      "type": "founding",
+      "label": "联合创始人",
+      "sources": [
+        "S-REG-QM"
+      ],
+      "nature": "business",
+      "role": "联合创始人",
+      "role_code": "founder",
+      "date": "2014-05-20",
+      "status": "historical"
+    },
+    {
+      "id": "rel-zhou-qm-found",
+      "from": "person-zhouyan",
+      "to": "co-qingmu-sensing",
+      "type": "founding",
+      "label": "联合创始人",
+      "sources": [
+        "S-REG-QM"
+      ],
+      "nature": "business",
+      "role": "联合创始人",
+      "role_code": "founder",
+      "date": "2014-05-20",
+      "status": "historical"
+    },
+    {
+      "id": "rel-lin-qm-officer",
+      "from": "person-linzhiyuan",
+      "to": "co-qingmu-sensing",
+      "type": "officer",
+      "label": "执行董事兼总经理",
+      "sources": [
+        "S-REG-QM"
+      ],
+      "nature": "business",
+      "role": "执行董事兼总经理",
+      "role_code": "director",
+      "status": "historical",
+      "valid_from": "2014-05-20",
+      "valid_to": "2019-08-30"
+    },
+    {
+      "id": "rel-zhou-qm-sup",
+      "from": "person-zhouyan",
+      "to": "co-qingmu-sensing",
+      "type": "officer",
+      "label": "监事",
+      "sources": [
+        "S-REG-QM"
+      ],
+      "nature": "business",
+      "role": "监事",
+      "role_code": "supervisor",
+      "claim_ids": [
+        "claim-zhou-supervisor"
+      ],
+      "status": "historical",
+      "valid_from": "2014-05-20",
+      "valid_to": "2019-08-30"
+    },
+    {
+      "id": "rel-he-qm-cfo",
+      "from": "person-hexiaowen",
+      "to": "co-qingmu-sensing",
+      "type": "employment",
+      "label": "财务负责人",
+      "sources": [
+        "S-REG-QM"
+      ],
+      "nature": "business",
+      "role": "财务负责人",
+      "role_code": "executive",
+      "claim_ids": [
+        "claim-he-finance"
+      ],
+      "status": "historical",
+      "valid_from": "2014-05-20",
+      "valid_to": "2019-08-30"
+    },
+    {
+      "id": "rel-lin-lq-own",
+      "from": "person-linzhiyuan",
+      "to": "co-lanqiao-software",
+      "type": "ownership",
+      "label": "持股 50%（至吊销）",
+      "sources": [
+        "S-REG-LQ"
+      ],
+      "nature": "capital",
+      "percent": 50,
+      "role": "股东",
+      "role_code": "shareholder",
+      "claim_ids": [
+        "claim-lq-revoked"
+      ],
+      "status": "historical",
+      "valid_from": "2011-07-01",
+      "valid_to": "2017-04-12"
+    },
+    {
+      "id": "rel-song-lq-own",
+      "from": "person-songqi",
+      "to": "co-lanqiao-software",
+      "type": "ownership",
+      "label": "持股 50%（至吊销）",
+      "sources": [
+        "S-REG-LQ"
+      ],
+      "nature": "capital",
+      "percent": 50,
+      "role": "股东",
+      "role_code": "shareholder",
+      "claim_ids": [
+        "claim-lq-revoked"
+      ],
+      "status": "historical",
+      "valid_from": "2011-07-01",
+      "valid_to": "2017-04-12"
+    },
+    {
+      "id": "rel-lin-lq-found",
+      "from": "person-linzhiyuan",
+      "to": "co-lanqiao-software",
+      "type": "founding",
+      "label": "联合创始人",
+      "sources": [
+        "S-REG-LQ"
+      ],
+      "nature": "business",
+      "role": "联合创始人",
+      "role_code": "founder",
+      "date": "2011-07-01",
+      "status": "historical"
+    },
+    {
+      "id": "rel-song-lq-found",
+      "from": "person-songqi",
+      "to": "co-lanqiao-software",
+      "type": "founding",
+      "label": "联合创始人",
+      "sources": [
+        "S-REG-LQ"
+      ],
+      "nature": "business",
+      "role": "联合创始人",
+      "role_code": "founder",
+      "date": "2011-07-01",
+      "status": "historical"
+    },
+    {
+      "id": "rel-song-lq-officer",
+      "from": "person-songqi",
+      "to": "co-lanqiao-software",
+      "type": "officer",
+      "label": "执行董事",
+      "sources": [
+        "S-REG-LQ"
+      ],
+      "nature": "business",
+      "role": "执行董事",
+      "role_code": "director",
+      "status": "historical",
+      "valid_from": "2011-07-01",
+      "valid_to": "2017-04-12"
+    },
+    {
+      "id": "rel-zhou-lq-sup",
+      "from": "person-zhouyan",
+      "to": "co-lanqiao-software",
+      "type": "officer",
+      "label": "监事",
+      "sources": [
+        "S-REG-LQ"
+      ],
+      "nature": "business",
+      "role": "监事",
+      "role_code": "supervisor",
+      "claim_ids": [
+        "claim-zhou-supervisor"
+      ],
+      "status": "historical",
+      "valid_from": "2011-07-01",
+      "valid_to": "2017-04-12"
+    },
+    {
+      "id": "rel-lin-ys-lp",
+      "from": "person-linzhiyuan",
+      "to": "investor-yuanshan-angel",
+      "type": "investment",
+      "label": "有限合伙份额 99%",
+      "sources": [
+        "S-REG-YS"
+      ],
+      "nature": "capital",
+      "percent": 99,
+      "role": "有限合伙人",
+      "role_code": "lp",
+      "valid_from": "2021-06-01",
+      "status": "current"
+    },
+    {
+      "id": "rel-holding-ys-gp",
+      "from": "co-zhiyuan-holding",
+      "to": "investor-yuanshan-angel",
+      "type": "investment",
+      "label": "普通合伙份额 1%；执行事务合伙人",
+      "sources": [
+        "S-REG-YS"
+      ],
+      "nature": "capital",
+      "percent": 1,
+      "role": "普通合伙人兼执行事务合伙人",
+      "role_code": "gp",
+      "valid_from": "2021-06-01",
+      "status": "current"
+    },
+    {
+      "id": "rel-ys-bc-inv",
+      "from": "investor-yuanshan-angel",
+      "to": "co-beichen-motion",
+      "type": "investment",
+      "label": "天使轮持股 8%",
+      "sources": [
+        "S-REG-BC",
+        "S-REG-YS",
+        "S-MEDIA-BC"
+      ],
+      "nature": "capital",
+      "percent": 8,
+      "amount": 400,
+      "currency": "CNY",
+      "unit": "万元",
+      "date": "2022-09-15",
+      "claim_ids": [
+        "claim-ys-bc"
+      ],
+      "status": "current"
+    },
+    {
+      "id": "rel-lin-bc-dir",
+      "from": "person-linzhiyuan",
+      "to": "co-beichen-motion",
+      "type": "officer",
+      "label": "董事",
+      "sources": [
+        "S-REG-BC"
+      ],
+      "nature": "business",
+      "role": "董事",
+      "role_code": "director",
+      "valid_from": "2022-09-15",
+      "status": "current"
+    },
+    {
+      "id": "rel-bc-xy-supply",
+      "from": "co-beichen-motion",
+      "to": "co-xingyan-robotics",
+      "type": "supplier",
+      "label": "供应运动控制模组",
+      "sources": [
+        "S-MEDIA-BC"
+      ],
+      "nature": "business",
+      "detail": "北辰在融资报道中自述其模组供应星衍XY系列；交易金额和期间未披露。",
+      "claim_ids": [
+        "claim-bc-supply"
+      ],
+      "status": "current"
+    },
+    {
+      "id": "rel-lin-inst-advisor",
+      "from": "person-linzhiyuan",
+      "to": "institution-huaxi-robotics",
+      "type": "employment",
+      "label": "产业导师",
+      "sources": [
+        "S-OFF-INST"
+      ],
+      "nature": "business",
+      "role": "产业导师",
+      "role_code": "advisor",
+      "valid_from": "2023-09-01",
+      "valid_to": "2026-08-31",
+      "status": "current"
+    },
+    {
+      "id": "rel-signal-address",
+      "from": "co-xingyan-robotics",
+      "to": "co-beichen-motion",
+      "type": "shared_address",
+      "label": "同一登记住所",
+      "sources": [
+        "S-REG-XY",
+        "S-REG-BC"
+      ],
+      "edge_class": "signal",
+      "signal_key": "示例市高新区创新路88号B座",
+      "detail": "两家企业登记住所相同；该楼宇为孵化器，共址本身不证明控制或交易，配合董事席位与供货关系阅读。",
+      "claim_ids": [
+        "claim-address-signal"
+      ],
+      "status": "current"
+    },
+    {
+      "id": "rel-signal-domain",
+      "from": "co-qingmu-sensing",
+      "to": "co-xingyan-robotics",
+      "type": "shared_domain",
+      "label": "旧域名跳转",
+      "sources": [
+        "S-ARC-DOM"
+      ],
+      "edge_class": "signal",
+      "signal_key": "qingmu-sensing.example",
+      "date": "2021-02-03",
+      "detail": "青木传感注销后，其旧域名于2021-02-03快照中永久跳转至星衍官网。",
+      "status": "historical"
+    },
+    {
+      "id": "rel-homonym-candidate",
+      "from": "person-linzhiyuan",
+      "to": "person-linzhiyuan-homonym",
+      "type": "same_as_candidate",
+      "label": "同名候选（不合并）",
+      "sources": [
+        "S-REG-NF",
+        "A001"
+      ],
+      "edge_class": "signal",
+      "status": "candidate",
+      "detail": "四锚点中仅姓名与城市一致，按候选身份保留。",
+      "claim_ids": [
+        "claim-homonym"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "S-REG-XY",
+      "title": "虚构登记快照：星衍机器人科技有限公司",
+      "url": "https://example.invalid/registry/xingyan-robotics",
+      "kind": "registry",
+      "publisher": "示例市场监管登记系统（虚构）",
+      "published_at": "2024-06-30",
+      "observed_at": "2024-07-01",
+      "locator": "基本信息、股东表第1–2行、主要人员第1–3行",
+      "excerpt": "纯样本：成立于2020-03-18，存续；股东林知远60%、知远控股40%；林知远任法定代表人、执行董事兼总经理，周砚任监事，何晓雯为财务负责人；住所：示例市高新区创新路88号B座。"
+    },
+    {
+      "id": "S-REG-HOLD",
+      "title": "虚构登记快照：知远控股有限公司",
+      "url": "https://example.invalid/registry/zhiyuan-holding",
+      "kind": "registry",
+      "publisher": "示例市场监管登记系统（虚构）",
+      "published_at": "2024-06-30",
+      "observed_at": "2024-07-01",
+      "locator": "股东表第1行、主要人员第1–3行",
+      "excerpt": "纯样本：成立于2019-11-05，存续；林知远持股100%并任执行董事，周砚任监事，何晓雯为财务负责人。"
+    },
+    {
+      "id": "S-REG-QM",
+      "title": "虚构登记历史：青木传感技术有限公司（已注销）",
+      "url": "https://example.invalid/registry/qingmu-sensing",
+      "kind": "registry",
+      "publisher": "示例市场监管登记系统（虚构）",
+      "published_at": "2019-08-30",
+      "observed_at": "2024-07-01",
+      "locator": "注销登记公告；历史股东表第1–3行；历史主要人员",
+      "excerpt": "纯样本：成立于2014-05-20，2019-08-30核准注销；注销前股东林知远70%、周砚25%、何晓雯5%；林知远任执行董事兼总经理，周砚任监事，何晓雯为财务负责人。"
+    },
+    {
+      "id": "S-REG-LQ",
+      "title": "虚构登记历史：蓝桥软件开发有限公司（已吊销）",
+      "url": "https://example.invalid/registry/lanqiao-software",
+      "kind": "registry",
+      "publisher": "示例市场监管登记系统（虚构）",
+      "published_at": "2017-04-12",
+      "observed_at": "2024-07-01",
+      "locator": "行政处罚与吊销记录；历史股东表第1–2行；主要人员",
+      "excerpt": "纯样本：成立于2011-07-01，2017-04-12因连续未年报被吊销营业执照；股东林知远、宋启各50%；宋启任执行董事，周砚任监事。"
+    },
+    {
+      "id": "S-REG-YS",
+      "title": "虚构登记快照：远山天使创业投资合伙企业（有限合伙）",
+      "url": "https://example.invalid/registry/yuanshan-angel",
+      "kind": "registry",
+      "publisher": "示例市场监管登记系统（虚构）",
+      "published_at": "2024-06-30",
+      "observed_at": "2024-07-01",
+      "locator": "合伙人表第1–2行；对外投资第1行",
+      "excerpt": "纯样本：成立于2021-06-01；有限合伙人林知远出资比例99%；普通合伙人兼执行事务合伙人知远控股1%；对外投资北辰运动控制8%。"
+    },
+    {
+      "id": "S-REG-BC",
+      "title": "虚构登记快照：北辰运动控制科技有限公司",
+      "url": "https://example.invalid/registry/beichen-motion",
+      "kind": "registry",
+      "publisher": "示例市场监管登记系统（虚构）",
+      "published_at": "2024-06-30",
+      "observed_at": "2024-07-01",
+      "locator": "股东表第3行；主要人员第2行；住所",
+      "excerpt": "纯样本：远山天使持股8%，2022-09-15登记变更；林知远任董事；住所：示例市高新区创新路88号B座。"
+    },
+    {
+      "id": "S-OFF-XY",
+      "title": "虚构官网：星衍机器人团队与产品页",
+      "url": "https://example.invalid/xingyan/about",
+      "kind": "official",
+      "publisher": "星衍机器人（虚构）",
+      "published_at": "2024-05-10",
+      "observed_at": "2024-07-01",
+      "locator": "团队栏第1–3项；产品页 XY-6 段落",
+      "excerpt": "纯样本：林知远为创始人兼CEO，宋启为首席技术官；XY-6协作机械臂于2023-04发布，由星衍研发与销售。"
+    },
+    {
+      "id": "S-OFF-INST",
+      "title": "虚构院系页面：华西理工大学机器人学院产业导师名单",
+      "url": "https://example.invalid/huaxi/mentors",
+      "kind": "official",
+      "publisher": "华西理工大学机器人学院（虚构）",
+      "published_at": "2023-09-01",
+      "observed_at": "2024-07-01",
+      "locator": "产业导师名单第4项",
+      "excerpt": "纯样本：林知远，星衍机器人创始人，2023–2026年度产业导师。"
+    },
+    {
+      "id": "S-MEDIA-BC",
+      "title": "虚构报道：北辰运动控制完成天使轮融资",
+      "url": "https://example.invalid/news/beichen-angel",
+      "kind": "media",
+      "publisher": "示例科技报道（虚构）",
+      "published_at": "2022-09-20",
+      "observed_at": "2024-07-01",
+      "locator": "第2、4段",
+      "excerpt": "纯样本：北辰称远山天使领投其天使轮；北辰表示其运动控制模组已供应星衍XY系列。"
+    },
+    {
+      "id": "S-ARC-DOM",
+      "title": "虚构网页存档：qingmu-sensing.example 跳转记录",
+      "url": "https://example.invalid/archive/qingmu-sensing",
+      "kind": "archive",
+      "publisher": "示例网页存档服务（虚构）",
+      "published_at": "2021-02-03",
+      "observed_at": "2024-07-01",
+      "locator": "2021-02-03 快照的 HTTP 301 响应头",
+      "excerpt": "纯样本：qingmu-sensing.example 永久跳转至 xingyan-robotics.example。"
+    },
+    {
+      "id": "S-REG-NF",
+      "title": "虚构登记快照：南风贸易有限公司",
+      "url": "https://example.invalid/registry/nanfeng-trading",
+      "kind": "registry",
+      "publisher": "示例市场监管登记系统（虚构）",
+      "published_at": "2024-06-30",
+      "observed_at": "2024-07-01",
+      "locator": "主要人员第1行",
+      "excerpt": "纯样本：法定代表人林知远；企业住所在示例市，经营范围为日用品批发；未见与机器人或传感业务相关的记录。"
+    },
+    {
+      "id": "U001",
+      "title": "本次用户提供：长期合作伙伴线索",
+      "url": "#source-U001",
+      "kind": "user",
+      "publisher": "本次用户（虚构）",
+      "published_at": null,
+      "observed_at": "2024-07-01",
+      "locator": "用户补充第1条",
+      "excerpt": "纯样本：用户转述，林知远的多家企业长期由同一位监事和同一位财务负责人参与。"
+    },
+    {
+      "id": "A001",
+      "title": "调查分析：股权穿透、二跳共现与同名排查",
+      "url": "#source-A001",
+      "kind": "analysis",
+      "publisher": "本报告",
+      "published_at": null,
+      "observed_at": "2024-07-01",
+      "locator": "分析记录 A001",
+      "excerpt": "纯样本：基于S-REG系列登记快照计算链式权益、共现频次与四锚点身份比对。"
+    },
+    {
+      "id": "S-FMT",
+      "title": "随附证据留存格式演示文本",
+      "url": "#source-FMT",
+      "kind": "archive",
+      "publisher": "技能随附示例（虚构）",
+      "published_at": null,
+      "observed_at": "2024-07-01",
+      "locator": "全文",
+      "excerpt": "纯样本：与公司根示例共用的留存文件，用于演示哈希与字节数校验，不支持本人物示例中的事实。"
+    }
+  ],
+  "assets": [
+    {
+      "id": "image-xy6",
+      "data_uri": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMjAgMjAwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjIwMCI+CjxyZWN0IHdpZHRoPSIzMjAiIGhlaWdodD0iMjAwIiByeD0iMTQiIGZpbGw9IiNGM0VGRTgiLz4KPHJlY3QgeD0iNDAiIHk9IjE2MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxNiIgcng9IjQiIGZpbGw9IiM0RjQ5NDIiLz4KPHJlY3QgeD0iODgiIHk9Ijk2IiB3aWR0aD0iMjQiIGhlaWdodD0iNjYiIHJ4PSI4IiBmaWxsPSIjQTMzOTJBIi8+CjxjaXJjbGUgY3g9IjEwMCIgY3k9Ijk2IiByPSIxNiIgZmlsbD0iIzFGMUMxOCIvPgo8cmVjdCB4PSIxMDAiIHk9Ijg0IiB3aWR0aD0iOTYiIGhlaWdodD0iMjIiIHJ4PSIxMCIgZmlsbD0iI0EzMzkyQSIgdHJhbnNmb3JtPSJyb3RhdGUoLTI0IDEwMCA5NikiLz4KPGNpcmNsZSBjeD0iMTg4IiBjeT0iNTgiIHI9IjEyIiBmaWxsPSIjMUYxQzE4Ii8+CjxwYXRoIGQ9Ik0xOTYgNTIgTDIzMiA0NCBMMjM2IDU2IEwyMDAgNjYgWiIgZmlsbD0iIzZGNjc1RCIvPgo8cGF0aCBkPSJNMjMyIDQwIEwyNDggMzQgTTIzNCA1OCBMMjUwIDYyIiBzdHJva2U9IiMxRjFDMTgiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+Cjx0ZXh0IHg9IjE5NiIgeT0iMTUwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzFGMUMxOCI+WFktNjwvdGV4dD4KPHRleHQgeD0iMTk2IiB5PSIxNzIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjExIiBmaWxsPSIjNkY2NzVEIj7omZrmnoTkuqflk4HnpLrmhI88L3RleHQ+Cjwvc3ZnPg==",
+      "mime": "image/svg+xml",
+      "alt": "XY-6 协作机械臂的虚构示意图",
+      "caption": "产品示意（虚构，非实拍）",
+      "observed_at": "2024-07-01",
+      "sources": [
+        "S-OFF-XY"
+      ]
+    },
+    {
+      "id": "image-skill-icon",
+      "path": "icon.svg",
+      "alt": "技能图标（示例图片路径用法）",
+      "caption": "以相对路径嵌入的本地 SVG",
+      "sources": [
+        "S-FMT"
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "finding-control",
+      "title": "星衍机器人由林知远穿透控制100%",
+      "text": "登记快照显示林知远直接持股60%，其全资的知远控股持股40%；两条路径合计的经济权益为100%，执行董事和法定代表人亦由本人担任。",
+      "sources": [
+        "S-REG-XY",
+        "S-REG-HOLD"
+      ],
+      "entity_ids": [
+        "person-linzhiyuan",
+        "co-zhiyuan-holding",
+        "co-xingyan-robotics"
+      ],
+      "claim_ids": [
+        "claim-own-xy",
+        "claim-own-holding",
+        "claim-penetration-xy"
+      ]
+    },
+    {
+      "id": "finding-partners",
+      "title": "两位伙伴贯穿其企业群",
+      "text": "周砚在四家企业任监事并曾联合创办青木传感；何晓雯在三家企业任财务负责人。合作中涉及治理和资金审批的对接人主要是这两位。",
+      "sources": [
+        "S-REG-XY",
+        "S-REG-HOLD",
+        "S-REG-QM",
+        "S-REG-LQ"
+      ],
+      "entity_ids": [
+        "person-zhouyan",
+        "person-hexiaowen"
+      ],
+      "claim_ids": [
+        "claim-zhou-supervisor",
+        "claim-he-finance"
+      ]
+    },
+    {
+      "id": "finding-related-supply",
+      "title": "供应商北辰与星衍存在多重关联",
+      "text": "北辰由远山天使持股8%，林知远任其董事，二者登记于同一住所，北辰并称向星衍供货。评估星衍采购价格与供应稳定性时，应把北辰视为关联方。",
+      "sources": [
+        "S-REG-BC",
+        "S-REG-XY",
+        "S-MEDIA-BC"
+      ],
+      "entity_ids": [
+        "co-beichen-motion",
+        "co-xingyan-robotics",
+        "investor-yuanshan-angel",
+        "person-linzhiyuan"
+      ],
+      "claim_ids": [
+        "claim-ys-bc",
+        "claim-bc-supply",
+        "claim-address-signal"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "id": "section-roles",
+      "title": "任职与持股",
+      "kicker": "存续与已注销、吊销主体一并列出",
+      "intro": "按登记材料逐家列出林知远的身份。历史主体保留任期，便于对照伙伴网络的形成过程。",
+      "blocks": [
+        {
+          "title": "六家关联组织",
+          "sources": [
+            "S-REG-XY",
+            "S-REG-HOLD",
+            "S-REG-YS",
+            "S-REG-BC",
+            "S-REG-QM",
+            "S-REG-LQ"
+          ],
+          "entity_ids": [
+            "co-xingyan-robotics",
+            "co-zhiyuan-holding",
+            "investor-yuanshan-angel",
+            "co-beichen-motion",
+            "co-qingmu-sensing",
+            "co-lanqiao-software"
+          ],
+          "table": {
+            "headers": [
+              "组织",
+              "登记状态",
+              "林知远身份",
+              "期间",
+              "来源"
+            ],
+            "rows": [
+              {
+                "cells": [
+                  "星衍机器人",
+                  "存续",
+                  "创始人；股东60%；法定代表人、执行董事兼总经理",
+                  "2020-03至今"
+                ],
+                "sources": [
+                  "S-REG-XY"
+                ]
+              },
+              {
+                "cells": [
+                  "知远控股",
+                  "存续",
+                  "股东100%；执行董事",
+                  "2019-11至今"
+                ],
+                "sources": [
+                  "S-REG-HOLD"
+                ]
+              },
+              {
+                "cells": [
+                  "远山天使",
+                  "存续",
+                  "有限合伙人99%",
+                  "2021-06至今"
+                ],
+                "sources": [
+                  "S-REG-YS"
+                ]
+              },
+              {
+                "cells": [
+                  "北辰运动控制",
+                  "存续",
+                  "董事",
+                  "2022-09至今"
+                ],
+                "sources": [
+                  "S-REG-BC"
+                ]
+              },
+              {
+                "cells": [
+                  "青木传感",
+                  "已注销",
+                  "联合创始人；股东70%；执行董事兼总经理",
+                  "2014-05至2019-08"
+                ],
+                "sources": [
+                  "S-REG-QM"
+                ]
+              },
+              {
+                "cells": [
+                  "蓝桥软件",
+                  "已吊销",
+                  "联合创始人；股东50%",
+                  "2011-07至2017-04"
+                ],
+                "sources": [
+                  "S-REG-LQ"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "公开职业身份",
+          "text": "华西理工大学机器人学院将林知远列为2023–2026年度产业导师；该身份不涉及持股或经营职务。",
+          "sources": [
+            "S-OFF-INST"
+          ],
+          "entity_ids": [
+            "institution-huaxi-robotics"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-capital",
+      "title": "股权穿透",
+      "kicker": "链式权益按同一快照日计算",
+      "intro": "只使用2024-06-30的当前持股与合伙份额边；已注销、吊销主体的历史持股不进入当前穿透。",
+      "blocks": [
+        {
+          "title": "穿透路径",
+          "text": "星衍机器人：直接60% + 知远控股100% × 40% = 100%。远山天使：有限合伙99% + 知远控股100% × 普通合伙1% = 100%。北辰运动控制：100% × 8% = 8%。",
+          "sources": [
+            "S-REG-XY",
+            "S-REG-HOLD",
+            "S-REG-YS",
+            "S-REG-BC",
+            "A001"
+          ],
+          "entity_ids": [
+            "co-xingyan-robotics",
+            "investor-yuanshan-angel",
+            "co-beichen-motion",
+            "co-zhiyuan-holding"
+          ],
+          "claim_ids": [
+            "claim-penetration-xy"
+          ],
+          "steps": [
+            {
+              "title": "林知远 → 星衍机器人",
+              "text": "直接持股60%。",
+              "sources": [
+                "S-REG-XY"
+              ]
+            },
+            {
+              "title": "林知远 → 知远控股 → 星衍机器人",
+              "text": "100% × 40% = 40%。",
+              "sources": [
+                "S-REG-HOLD",
+                "S-REG-XY"
+              ]
+            },
+            {
+              "title": "林知远 → 远山天使 → 北辰运动控制",
+              "text": "(99% + 100% × 1%) × 8% = 8%。",
+              "sources": [
+                "S-REG-YS",
+                "S-REG-BC"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-partners",
+      "title": "共现伙伴与二跳网络",
+      "kicker": "存续 + 已注销/吊销 伙伴频次",
+      "intro": "从林知远出发，经其任职或持股的组织找到第二跳人物，统计共同出现的组织数量与角色。",
+      "blocks": [
+        {
+          "title": "伙伴共现频次",
+          "sources": [
+            "S-REG-XY",
+            "S-REG-HOLD",
+            "S-REG-QM",
+            "S-REG-LQ",
+            "S-OFF-XY"
+          ],
+          "entity_ids": [
+            "person-zhouyan",
+            "person-hexiaowen",
+            "person-songqi"
+          ],
+          "chart": {
+            "title": "与林知远共同出现的组织数",
+            "unit": "家",
+            "decimals": 0,
+            "rows": [
+              {
+                "label": "周砚",
+                "segments": [
+                  {
+                    "name": "存续",
+                    "value": 2
+                  },
+                  {
+                    "name": "已注销/吊销",
+                    "value": 2
+                  }
+                ]
+              },
+              {
+                "label": "何晓雯",
+                "segments": [
+                  {
+                    "name": "存续",
+                    "value": 2
+                  },
+                  {
+                    "name": "已注销/吊销",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "label": "宋启",
+                "segments": [
+                  {
+                    "name": "存续",
+                    "value": 1
+                  },
+                  {
+                    "name": "已注销/吊销",
+                    "value": 1
+                  }
+                ]
+              }
+            ],
+            "note": "宋启在星衍的首席技术官身份来自官网，登记主要人员未列。",
+            "sources": [
+              "S-REG-XY",
+              "S-REG-HOLD",
+              "S-REG-QM",
+              "S-REG-LQ",
+              "S-OFF-XY"
+            ]
+          }
+        },
+        {
+          "title": "角色模式",
+          "text": "周砚始终以监事出现，并在青木传感与林知远联合创业；何晓雯在三家企业负责财务，并曾持有青木5%股份；宋启是早期软件创业伙伴，现任星衍技术负责人。三人的共同出现跨越两家已结束经营的企业，说明这是延续十余年的稳定团队。",
+          "sources": [
+            "S-REG-QM",
+            "S-REG-LQ",
+            "S-REG-XY",
+            "S-OFF-XY",
+            "U001"
+          ],
+          "entity_ids": [
+            "person-zhouyan",
+            "person-hexiaowen",
+            "person-songqi"
+          ],
+          "claim_ids": [
+            "claim-zhou-supervisor",
+            "claim-he-finance"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section-signals",
+      "title": "隐性关联与同名排查",
+      "kicker": "信号边不等同于控制或交易",
+      "intro": "共同住所、域名跳转等信号用于发现线索，需要与持股、任职、交易等直接事实一起解读。",
+      "blocks": [
+        {
+          "title": "共址与供货",
+          "text": "星衍机器人与北辰运动控制登记于同一孵化器楼宇；结合远山天使持股、林知远董事席位和北辰的供货自述，北辰应作为星衍的关联供应商评估。",
+          "sources": [
+            "S-REG-XY",
+            "S-REG-BC",
+            "S-MEDIA-BC"
+          ],
+          "entity_ids": [
+            "co-xingyan-robotics",
+            "co-beichen-motion"
+          ],
+          "claim_ids": [
+            "claim-address-signal",
+            "claim-bc-supply"
+          ]
+        },
+        {
+          "title": "旧域名延续",
+          "text": "青木传感注销后，其旧域名跳转至星衍官网，显示两家企业在品牌与客户入口上的承接。",
+          "sources": [
+            "S-ARC-DOM"
+          ],
+          "entity_ids": [
+            "co-qingmu-sensing",
+            "co-xingyan-robotics"
+          ]
+        },
+        {
+          "title": "同名人物",
+          "text": "南风贸易的法定代表人与本人同名同城，但登记机构、行业和伙伴网络均无交集，四锚点仅两项一致，保留为候选身份，不计入关系网络与共现统计。",
+          "sources": [
+            "S-REG-NF",
+            "A001"
+          ],
+          "entity_ids": [
+            "person-linzhiyuan-homonym"
+          ],
+          "claim_ids": [
+            "claim-homonym"
+          ]
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "q-control",
+      "question": "林知远实际控制哪些企业，控制链怎样形成？",
+      "answer": "当前穿透控制星衍机器人与远山天使（均为100%），并经远山天使持有北辰运动控制8%。控制链以全资的知远控股为枢纽。",
+      "sources": [
+        "S-REG-XY",
+        "S-REG-HOLD",
+        "S-REG-YS"
+      ],
+      "evidence": [
+        {
+          "text": "星衍股东为林知远60%、知远控股40%。",
+          "sources": [
+            "S-REG-XY"
+          ],
+          "entity_ids": [
+            "co-xingyan-robotics"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q-partners",
+      "question": "谁是他长期、反复合作的伙伴？",
+      "answer": "周砚（四家企业监事、青木联合创始人）与何晓雯（三家企业财务负责人）；宋启为早期联合创始人和现任技术负责人。",
+      "sources": [
+        "S-REG-XY",
+        "S-REG-HOLD",
+        "S-REG-QM",
+        "S-REG-LQ",
+        "S-OFF-XY"
+      ],
+      "evidence": [
+        {
+          "text": "伙伴频次覆盖存续与已注销、吊销主体。",
+          "sources": [
+            "S-REG-QM",
+            "S-REG-LQ"
+          ],
+          "entity_ids": [
+            "person-zhouyan",
+            "person-hexiaowen",
+            "person-songqi"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q-history",
+      "question": "过往企业为什么结束，对当前合作有什么含义？",
+      "answer": "蓝桥软件因连续未报送年报被吊销，青木传感正常注销且旧域名并入星衍。前者反映早期合规管理缺口，后者显示业务向星衍延续；当前企业未见同类记录。",
+      "sources": [
+        "S-REG-LQ",
+        "S-REG-QM",
+        "S-ARC-DOM"
+      ],
+      "evidence": [
+        {
+          "text": "蓝桥吊销日期2017-04-12。",
+          "sources": [
+            "S-REG-LQ"
+          ],
+          "entity_ids": [
+            "co-lanqiao-software"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q-related",
+      "question": "合作对象周边有哪些关联方？",
+      "answer": "北辰运动控制同时具有被投企业、董事席位、同址和供货四重关系，是最需要单独核对交易条件的关联方。",
+      "sources": [
+        "S-REG-BC",
+        "S-MEDIA-BC",
+        "S-REG-XY"
+      ],
+      "evidence": [
+        {
+          "text": "远山天使持股8%，林知远任董事。",
+          "sources": [
+            "S-REG-BC"
+          ],
+          "entity_ids": [
+            "co-beichen-motion"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q-identity",
+      "question": "同名人物是否可能混淆？",
+      "answer": "南风贸易法定代表人与本人同名同城，但缺少机构、时间和关系网锚点，已单独建档；如对方材料出现该企业，应先核实身份。",
+      "sources": [
+        "S-REG-NF",
+        "A001"
+      ],
+      "evidence": [
+        {
+          "text": "四锚点中仅两项一致。",
+          "sources": [
+            "A001"
+          ],
+          "entity_ids": [
+            "person-linzhiyuan-homonym"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "q-gaps",
+      "question": "还有哪些事实尚未公开？",
+      "answer": "星衍与北辰的交易金额和期间、星衍收入与员工规模均未见公开材料；宋启的技术负责人身份仅有官网来源。",
+      "sources": [
+        "S-MEDIA-BC",
+        "S-OFF-XY"
+      ],
+      "evidence": [
+        {
+          "text": "北辰报道未披露供货金额。",
+          "sources": [
+            "S-MEDIA-BC"
+          ],
+          "entity_ids": [
+            "co-beichen-motion"
+          ]
+        }
+      ]
+    }
+  ],
+  "archives": [
+    {
+      "id": "archive-people",
+      "title": "人物档案",
+      "intro": "根人物、三位共现伙伴与同名候选。",
+      "entity_ids": [
+        "person-linzhiyuan",
+        "person-zhouyan",
+        "person-hexiaowen",
+        "person-songqi",
+        "person-linzhiyuan-homonym"
+      ],
+      "source_ids": [
+        "S-REG-XY",
+        "S-REG-HOLD",
+        "S-REG-QM",
+        "S-REG-LQ",
+        "S-OFF-XY",
+        "S-REG-NF"
+      ],
+      "blocks": [
+        {
+          "title": "人物关系要点",
+          "text": "周砚、何晓雯与林知远的共同任职跨越2011–2024年；同名候选不参与共现统计。",
+          "sources": [
+            "S-REG-QM",
+            "S-REG-LQ",
+            "S-REG-NF"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "archive-orgs",
+      "title": "组织档案",
+      "intro": "存续、已注销与已吊销组织及投资载体。",
+      "entity_ids": [
+        "co-xingyan-robotics",
+        "co-zhiyuan-holding",
+        "investor-yuanshan-angel",
+        "co-beichen-motion",
+        "co-qingmu-sensing",
+        "co-lanqiao-software",
+        "institution-huaxi-robotics",
+        "product-xy6-arm"
+      ],
+      "source_ids": [
+        "S-REG-XY",
+        "S-REG-HOLD",
+        "S-REG-YS",
+        "S-REG-BC",
+        "S-REG-QM",
+        "S-REG-LQ",
+        "S-OFF-INST"
+      ],
+      "blocks": [
+        {
+          "title": "登记状态",
+          "text": "存续4家；青木传感2019-08-30注销；蓝桥软件2017-04-12吊销。",
+          "sources": [
+            "S-REG-QM",
+            "S-REG-LQ"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "archive-evidence",
+      "title": "证据留存",
+      "intro": "登记快照的查询记录与随附留存文件。",
+      "entity_ids": [],
+      "source_ids": [
+        "S-REG-XY",
+        "S-REG-HOLD",
+        "S-REG-QM",
+        "S-REG-LQ",
+        "S-REG-BC",
+        "S-FMT"
+      ],
+      "blocks": [
+        {
+          "title": "留存说明",
+          "text": "登记快照仅保存查询元数据；随附文本用于演示哈希校验。",
+          "sources": [
+            "S-FMT"
+          ]
+        }
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2011-07-01",
+      "title": "蓝桥软件成立",
+      "text": "林知远与宋启各持股50%，周砚任监事。",
+      "sources": [
+        "S-REG-LQ"
+      ],
+      "entity_ids": [
+        "co-lanqiao-software",
+        "person-linzhiyuan",
+        "person-songqi",
+        "person-zhouyan"
+      ]
+    },
+    {
+      "date": "2014-05-20",
+      "title": "青木传感成立",
+      "text": "林知远与周砚联合创办，何晓雯任财务负责人并持股5%。",
+      "sources": [
+        "S-REG-QM"
+      ],
+      "entity_ids": [
+        "co-qingmu-sensing",
+        "person-linzhiyuan",
+        "person-zhouyan",
+        "person-hexiaowen"
+      ]
+    },
+    {
+      "date": "2017-04-12",
+      "title": "蓝桥软件被吊销",
+      "text": "因连续未报送年度报告被吊销营业执照。",
+      "sources": [
+        "S-REG-LQ"
+      ],
+      "entity_ids": [
+        "co-lanqiao-software"
+      ]
+    },
+    {
+      "date": "2019-08-30",
+      "title": "青木传感注销",
+      "text": "核准注销登记。",
+      "sources": [
+        "S-REG-QM"
+      ],
+      "entity_ids": [
+        "co-qingmu-sensing"
+      ]
+    },
+    {
+      "date": "2019-11-05",
+      "title": "知远控股成立",
+      "text": "林知远全资持股。",
+      "sources": [
+        "S-REG-HOLD"
+      ],
+      "entity_ids": [
+        "co-zhiyuan-holding",
+        "person-linzhiyuan"
+      ]
+    },
+    {
+      "date": "2020-03-18",
+      "title": "星衍机器人成立",
+      "text": "林知远直接持股60%，知远控股持股40%。",
+      "sources": [
+        "S-REG-XY"
+      ],
+      "entity_ids": [
+        "co-xingyan-robotics",
+        "person-linzhiyuan",
+        "co-zhiyuan-holding"
+      ]
+    },
+    {
+      "date": "2021-02-03",
+      "title": "青木旧域名跳转星衍",
+      "text": "存档快照显示永久跳转。",
+      "sources": [
+        "S-ARC-DOM"
+      ],
+      "entity_ids": [
+        "co-qingmu-sensing",
+        "co-xingyan-robotics"
+      ]
+    },
+    {
+      "date": "2021-06-01",
+      "title": "远山天使成立",
+      "text": "林知远为有限合伙人，知远控股为普通合伙人。",
+      "sources": [
+        "S-REG-YS"
+      ],
+      "entity_ids": [
+        "investor-yuanshan-angel",
+        "person-linzhiyuan",
+        "co-zhiyuan-holding"
+      ]
+    },
+    {
+      "date": "2022-09-15",
+      "title": "投资北辰运动控制",
+      "text": "远山天使持股8%，林知远出任董事。",
+      "sources": [
+        "S-REG-BC"
+      ],
+      "entity_ids": [
+        "investor-yuanshan-angel",
+        "co-beichen-motion",
+        "person-linzhiyuan"
+      ]
+    },
+    {
+      "date": "2023-04",
+      "title": "XY-6 发布",
+      "text": "星衍机器人发布XY-6协作机械臂。",
+      "sources": [
+        "S-OFF-XY"
+      ],
+      "entity_ids": [
+        "co-xingyan-robotics",
+        "product-xy6-arm"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim-own-xy",
+      "text": "截至2024-06-30，林知远直接持有星衍机器人60%股份，知远控股持有40%。",
+      "kind": "fact",
+      "entity_ids": [
+        "person-linzhiyuan",
+        "co-zhiyuan-holding",
+        "co-xingyan-robotics"
+      ],
+      "source_ids": [
+        "S-REG-XY"
+      ],
+      "locator": "股东表第1–2行",
+      "published_at": "2024-06-30",
+      "effective_at": "2020-03-18",
+      "as_of": "2024-06-30",
+      "accessed_at": "2024-07-01",
+      "evidence": [
+        {
+          "source_id": "S-REG-XY",
+          "locator": "股东表第1–2行",
+          "published_at": "2024-06-30",
+          "accessed_at": "2024-07-01",
+          "snapshot_id": "snap-reg-xy"
+        }
+      ],
+      "status": "current"
+    },
+    {
+      "id": "claim-own-holding",
+      "text": "截至2024-06-30，林知远持有知远控股100%股份。",
+      "kind": "fact",
+      "entity_ids": [
+        "person-linzhiyuan",
+        "co-zhiyuan-holding"
+      ],
+      "source_ids": [
+        "S-REG-HOLD"
+      ],
+      "locator": "股东表第1行",
+      "published_at": "2024-06-30",
+      "effective_at": "2019-11-05",
+      "as_of": "2024-06-30",
+      "accessed_at": "2024-07-01",
+      "evidence": [
+        {
+          "source_id": "S-REG-HOLD",
+          "locator": "股东表第1行",
+          "published_at": "2024-06-30",
+          "accessed_at": "2024-07-01",
+          "snapshot_id": "snap-reg-holding"
+        }
+      ],
+      "status": "current"
+    },
+    {
+      "id": "claim-penetration-xy",
+      "text": "按登记持股比例计算，林知远在星衍机器人的穿透经济权益为100%：直接60% + 100% × 40%。",
+      "kind": "analysis",
+      "entity_ids": [
+        "person-linzhiyuan",
+        "co-zhiyuan-holding",
+        "co-xingyan-robotics"
+      ],
+      "source_ids": [
+        "A001",
+        "S-REG-XY",
+        "S-REG-HOLD"
+      ],
+      "locator": "分析记录 A001 第1项",
+      "published_at": null,
+      "effective_at": null,
+      "as_of": "2024-06-30",
+      "accessed_at": "2024-07-01",
+      "input_claim_ids": [
+        "claim-own-xy",
+        "claim-own-holding"
+      ],
+      "reasoning": "链式权益 = Σ 各路径比例连乘：0.60 + 1.00 × 0.40 = 1.00。仅使用2024-06-30同一时点的当前持股边。",
+      "status": "current"
+    },
+    {
+      "id": "claim-qm-dissolved",
+      "text": "青木传感于2019-08-30核准注销；注销前股东为林知远70%、周砚25%、何晓雯5%。",
+      "kind": "fact",
+      "entity_ids": [
+        "co-qingmu-sensing",
+        "person-linzhiyuan",
+        "person-zhouyan",
+        "person-hexiaowen"
+      ],
+      "source_ids": [
+        "S-REG-QM"
+      ],
+      "locator": "注销登记公告；历史股东表第1–3行",
+      "published_at": "2019-08-30",
+      "effective_at": "2019-08-30",
+      "as_of": "2019-08-30",
+      "accessed_at": "2024-07-01",
+      "evidence": [
+        {
+          "source_id": "S-REG-QM",
+          "locator": "注销登记公告；历史股东表第1–3行",
+          "published_at": "2019-08-30",
+          "accessed_at": "2024-07-01",
+          "snapshot_id": "snap-reg-qm"
+        }
+      ],
+      "status": "historical"
+    },
+    {
+      "id": "claim-lq-revoked",
+      "text": "蓝桥软件于2017-04-12被吊销营业执照；吊销前股东为林知远、宋启各50%。",
+      "kind": "fact",
+      "entity_ids": [
+        "co-lanqiao-software",
+        "person-linzhiyuan",
+        "person-songqi"
+      ],
+      "source_ids": [
+        "S-REG-LQ"
+      ],
+      "locator": "行政处罚与吊销记录；历史股东表第1–2行",
+      "published_at": "2017-04-12",
+      "effective_at": "2017-04-12",
+      "as_of": "2017-04-12",
+      "accessed_at": "2024-07-01",
+      "evidence": [
+        {
+          "source_id": "S-REG-LQ",
+          "locator": "行政处罚与吊销记录；历史股东表第1–2行",
+          "published_at": "2017-04-12",
+          "accessed_at": "2024-07-01",
+          "snapshot_id": "snap-reg-lq"
+        }
+      ],
+      "status": "historical"
+    },
+    {
+      "id": "claim-zhou-supervisor",
+      "text": "周砚在蓝桥软件、青木传感、知远控股和星衍机器人四家企业登记为监事，其中两家存续、两家已注销或吊销。",
+      "kind": "fact",
+      "entity_ids": [
+        "person-zhouyan",
+        "person-linzhiyuan",
+        "co-xingyan-robotics",
+        "co-zhiyuan-holding",
+        "co-qingmu-sensing",
+        "co-lanqiao-software"
+      ],
+      "source_ids": [
+        "S-REG-XY",
+        "S-REG-HOLD",
+        "S-REG-QM",
+        "S-REG-LQ"
+      ],
+      "locator": "各登记快照主要人员栏",
+      "published_at": null,
+      "effective_at": null,
+      "as_of": "2024-06-30",
+      "accessed_at": "2024-07-01",
+      "evidence": [
+        {
+          "source_id": "S-REG-XY",
+          "locator": "各登记快照主要人员栏",
+          "published_at": null,
+          "accessed_at": "2024-07-01",
+          "snapshot_id": "snap-reg-xy"
+        },
+        {
+          "source_id": "S-REG-HOLD",
+          "locator": "各登记快照主要人员栏",
+          "published_at": null,
+          "accessed_at": "2024-07-01",
+          "snapshot_id": "snap-reg-holding"
+        },
+        {
+          "source_id": "S-REG-QM",
+          "locator": "各登记快照主要人员栏",
+          "published_at": null,
+          "accessed_at": "2024-07-01",
+          "snapshot_id": "snap-reg-qm"
+        },
+        {
+          "source_id": "S-REG-LQ",
+          "locator": "各登记快照主要人员栏",
+          "published_at": null,
+          "accessed_at": "2024-07-01",
+          "snapshot_id": "snap-reg-lq"
+        }
+      ],
+      "status": "current"
+    },
+    {
+      "id": "claim-he-finance",
+      "text": "何晓雯在青木传感、知远控股和星衍机器人登记为财务负责人，并曾持有青木传感5%股份。",
+      "kind": "fact",
+      "entity_ids": [
+        "person-hexiaowen",
+        "co-xingyan-robotics",
+        "co-zhiyuan-holding",
+        "co-qingmu-sensing"
+      ],
+      "source_ids": [
+        "S-REG-XY",
+        "S-REG-HOLD",
+        "S-REG-QM"
+      ],
+      "locator": "各登记快照主要人员栏；青木历史股东表第3行",
+      "published_at": null,
+      "effective_at": null,
+      "as_of": "2024-06-30",
+      "accessed_at": "2024-07-01",
+      "status": "current"
+    },
+    {
+      "id": "claim-ys-bc",
+      "text": "远山天使于2022-09-15登记持有北辰运动控制8%股份，报道披露投资金额400万元人民币。",
+      "kind": "fact",
+      "entity_ids": [
+        "investor-yuanshan-angel",
+        "co-beichen-motion"
+      ],
+      "source_ids": [
+        "S-REG-BC",
+        "S-MEDIA-BC"
+      ],
+      "locator": "股东表第3行；报道第2段",
+      "published_at": "2022-09-20",
+      "effective_at": "2022-09-15",
+      "as_of": "2024-06-30",
+      "accessed_at": "2024-07-01",
+      "evidence": [
+        {
+          "source_id": "S-REG-BC",
+          "locator": "股东表第3行；报道第2段",
+          "published_at": "2022-09-20",
+          "accessed_at": "2024-07-01",
+          "snapshot_id": "snap-reg-bc"
+        }
+      ],
+      "status": "current"
+    },
+    {
+      "id": "claim-bc-supply",
+      "text": "北辰运动控制称其运动控制模组已供应星衍XY系列。",
+      "kind": "company_statement",
+      "entity_ids": [
+        "co-beichen-motion",
+        "co-xingyan-robotics"
+      ],
+      "source_ids": [
+        "S-MEDIA-BC"
+      ],
+      "locator": "报道第4段",
+      "published_at": "2022-09-20",
+      "effective_at": null,
+      "as_of": null,
+      "accessed_at": "2024-07-01",
+      "status": "current",
+      "uncertainty": "交易金额、期间和定价未披露；星衍未在公开材料中确认。"
+    },
+    {
+      "id": "claim-address-signal",
+      "text": "星衍机器人与北辰运动控制登记住所同为示例市高新区创新路88号B座。",
+      "kind": "fact",
+      "entity_ids": [
+        "co-xingyan-robotics",
+        "co-beichen-motion"
+      ],
+      "source_ids": [
+        "S-REG-XY",
+        "S-REG-BC"
+      ],
+      "locator": "两家登记快照住所栏",
+      "published_at": "2024-06-30",
+      "effective_at": null,
+      "as_of": "2024-06-30",
+      "accessed_at": "2024-07-01",
+      "status": "current"
+    },
+    {
+      "id": "claim-homonym",
+      "text": "南风贸易法定代表人林知远与本报告人物仅姓名和城市一致，登记机构、行业与伙伴网络不重叠，按同名候选单独保留。",
+      "kind": "analysis",
+      "entity_ids": [
+        "person-linzhiyuan",
+        "person-linzhiyuan-homonym"
+      ],
+      "source_ids": [
+        "A001",
+        "S-REG-NF"
+      ],
+      "locator": "分析记录 A001 第3项；南风贸易主要人员第1行",
+      "published_at": null,
+      "effective_at": null,
+      "as_of": "2024-06-30",
+      "accessed_at": "2024-07-01",
+      "reasoning": "四锚点：姓名=一致；机构/登记号=不一致；时间连续性=无可比任期；地域/关系网=同城但伙伴网络无交集。一致锚点2个，保留为候选。",
+      "status": "candidate"
+    }
+  ],
+  "evidence_manifest": [
+    {
+      "id": "snap-reg-xy",
+      "source_id": "S-REG-XY",
+      "representation": "web_snapshot",
+      "status": "metadata_only",
+      "captured_at": "2024-07-01",
+      "origin_url": "https://example.invalid/registry/xingyan-robotics",
+      "access_note": "虚构样本：仅记录查询时间与页面范围，未保存页面字节。"
+    },
+    {
+      "id": "snap-reg-holding",
+      "source_id": "S-REG-HOLD",
+      "representation": "web_snapshot",
+      "status": "metadata_only",
+      "captured_at": "2024-07-01",
+      "origin_url": "https://example.invalid/registry/zhiyuan-holding",
+      "access_note": "虚构样本：仅记录查询时间与页面范围，未保存页面字节。"
+    },
+    {
+      "id": "snap-reg-qm",
+      "source_id": "S-REG-QM",
+      "representation": "web_snapshot",
+      "status": "metadata_only",
+      "captured_at": "2024-07-01",
+      "origin_url": "https://example.invalid/registry/qingmu-sensing",
+      "access_note": "虚构样本：仅记录查询时间与页面范围，未保存页面字节。"
+    },
+    {
+      "id": "snap-reg-lq",
+      "source_id": "S-REG-LQ",
+      "representation": "web_snapshot",
+      "status": "metadata_only",
+      "captured_at": "2024-07-01",
+      "origin_url": "https://example.invalid/registry/lanqiao-software",
+      "access_note": "虚构样本：仅记录查询时间与页面范围，未保存页面字节。"
+    },
+    {
+      "id": "snap-reg-bc",
+      "source_id": "S-REG-BC",
+      "representation": "web_snapshot",
+      "status": "metadata_only",
+      "captured_at": "2024-07-01",
+      "origin_url": "https://example.invalid/registry/beichen-motion",
+      "access_note": "虚构样本：仅记录查询时间与页面范围，未保存页面字节。"
+    },
+    {
+      "id": "snap-format-demo",
+      "source_id": "S-FMT",
+      "representation": "excerpt",
+      "status": "stored",
+      "captured_at": "2024-07-01",
+      "path": "example-evidence.txt",
+      "sha256": "931db3f23f45646151977da0fa07c807a38e02cd9b9db374395a88e2ca2ecbfe",
+      "bytes": 283,
+      "access_note": "与公司根示例共用的虚构留存文本，仅演示哈希与字节数校验。"
+    }
+  ]
+}

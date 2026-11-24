@@ -1,17 +1,17 @@
 # 统一资料模型
 
-目录：顶层对象；主体；关系；来源；主张；证据留存；事件与岗位；正文与档案；图片；时间与金额；增量更新。
+目录：顶层对象；主体；关系；来源；主张；证据留存；事件与岗位；正文与档案；图片；时间与金额；构建期分析结果；增量更新。
 
 ## 顶层对象
 
-一个 UTF-8 JSON 作为报告的唯一资料源。渲染器不另存股东表或人物名单。
+一个 UTF-8 JSON 作为报告的唯一资料源。渲染器不另存股东表或人物名单。根节点可以是任一主体类型：公司、人物、投资方、机构、产品或品牌。
 
 ```json
 {
   "schema_version": 1,
   "meta": {
-    "title": "目标公司｜深度背景调查", "subtitle": "人物、公司、资本与产品",
-    "root_id": "co-root", "as_of": "2000-12-31", "summary": "公司判断",
+    "title": "调查对象｜深度背景调查", "subtitle": "人物、组织、资本与产品",
+    "root_id": "co-root", "root_type": "company", "as_of": "2000-12-31", "summary": "核心判断",
     "core_ids": ["co-root"], "language": "zh-CN"
   },
   "entities": [], "relationships": [], "sources": [], "assets": [],
@@ -21,17 +21,37 @@
 
 这里的日期仅示范格式。正式报告填写实际资料截至日；`assets/example-data.json` 的主体、事件、来源、图片与日期全部为虚构样本。
 
-保留 `schema_version: 1` 和旧字段。新增的 `claims、evidence_manifest、events、role_assessment` 为兼容扩展，旧稿可逐步补充；新调查的重要判断使用主张记录。现有渲染字段 `sources[]` 继续保留，同时加入 `claim_ids[]` 连接证据细节。正文和图谱从统一记录生成，避免独立维护不同答案。
+这里的两个随附演示文件分别以公司（`example-data.json`）和人物（`example-person-data.json`）为根节点，均为虚构样本。
+
+保留 `schema_version: 1` 和旧字段。新增的 `claims、evidence_manifest、events、role_assessment` 以及下文标注“可选扩展”的多根节点字段均为兼容扩展：旧稿无需修改即可通过检查，可逐步补充；新调查的重要判断使用主张记录。现有渲染字段 `sources[]` 继续保留，同时加入 `claim_ids[]` 连接证据细节。正文和图谱从统一记录生成，避免独立维护不同答案。
+
+新增字段避免使用全局检查器按名称识别的键：任意层级的 `sources、source_ids、entity_ids、image_ids、claim_ids、input_claim_ids` 视为 ID 引用，`date、valid_from、valid_to、published_at、observed_at、as_of、effective_at、accessed_at、captured_at、snapshot_at` 视为日期，`percent` 视为 0–100 数值，`amount` 需同时带 `currency` 与 `unit`。扩展字段只在符合这些含义时使用这些名称。
 
 `meta.as_of` 是整份调查的资料截至日；可用 `meta.snapshot_at` 明确本次研究快照日，二者至少精确到日。`meta.generated_at` 记录成稿时间。各主张保留自己的统计/快照时点，报告日期覆盖不了的材料缺口按原样保存。
 
 `meta.navigation` 可选，格式为 `[{"label":"先认识公司","target":"overview"}, ...]`，用于保留既有八个入口。target 指向实际 DOM id：overview、network、正文 section 的原始 id、questions、archives、timeline、sources。未设置时由渲染器生成目录。正式默认八入口可依次指向 overview、人员正文、network、业务正文、案例正文、团队正文、questions、archives；时间线和来源继续在完整资料中阅读。正文 section.id 不使用 overview、network、questions、archives、timeline、sources 六个保留 ID。
+
+### 根节点 meta 扩展（可选）
+
+| 字段 | 约定 |
+| --- | --- |
+| `root_type` | 与根主体的 `type` 一致：`company、person、investor、institution、product、brand`。省略时由根主体推导；二者不一致时检查器给出警告 |
+| `purpose` | 本次调查目的的一句话，例如入职、合作、投资、供应商或关联方尽调 |
+| `ui_labels` | 字符串到字符串的对象，覆盖根类型自动文案。可用键：`reportKind、heroEyebrow、judgmentLabel、questionsTitle、brandSub、networkKicker、emptyJudgment` |
+
+`ui_labels` 只用于案件确有特殊称谓时，例如把“机构判断”改为“基金会判断”；一般情况下交给模板按根类型生成。
 
 ## 主体 entities
 
 必填 `id, name, type, summary, sources`。type 取 `company, person, product, brand, investor, institution`。品牌、法律主体、产品、商店发行账号的运营公司分别建档；同名候选身份保留独立 ID。
 
 可选：`short_name, aliases[], role, cluster, status, fields[], facts[], career[], sections[], image_ids[], importance`。
+
+多根节点可选扩展：
+
+- `identifiers[]`：`{scheme, value, jurisdiction?}`。scheme 使用小写短名，例如 `cn_uscc`（统一社会信用代码）、`lei`、`sec_cik`、`company_number`、`domain`、`app_id`、`product_model`、`trademark`、`orcid`。scheme 与 value 为非空字符串；跨案件合并只在 `(scheme, value)` 完全相同时自动合并。
+- `registry_status`：登记存续状态，取 `active`（存续/在业）、`dissolved`（注销）、`revoked`（吊销）、`deregistered`（撤销/除名）、`unknown`。它与 `status` 分开：`status` 表达调查中的时间/核验状态，`registry_status` 表达登记机关记录的主体状态。已注销或吊销的组织通常同时标 `status: historical`。
+- `identity_basis`：`{anchors, decision, notes?, claim_ids?}`。anchors 为 `{name, organization, time, place_or_network}`，每项取 `match、conflict、unknown`；decision 取 `merge、candidate、separate`。用于记录人物或同名主体的四锚点消歧结论，规则见 [evidence-and-identity.md](evidence-and-identity.md)。
 
 - `fields[]`：`{label, value, sources[]}`，用于信用代码、司法辖区、资本等。
 - `facts[]`：`{text, sources[], date?, status?}`。
@@ -47,13 +67,30 @@
 
 可选：`detail, date, valid_from, valid_to, status, percent, amount, currency, unit, nature, disputed, claim_ids[], event_id`。
 
-- type 建议：`ownership, investment, employment, partnership, creation, operation, publishing, client, domain, historical, candidate`。
-- `nature` 用于图形样式，取 `capital` 或 `business`。持股方向：股东 → 公司；任职：人 → 公司；发行：发行公司 → 产品。
+- type 为自由文本，建议使用以下词表，各行业通用：
+
+| 关系族 | type | 方向与要点 |
+| --- | --- | --- |
+| 资本 | `ownership, investment` | 股东/出资人 → 被投主体；合伙份额用 `role_code: gp/lp` 区分 |
+| 治理与任职 | `founding, officer, employment` | 人 → 组织；`officer` 记登记职务（董事、监事、法定代表人），`employment` 记经营或雇佣职务 |
+| 业务 | `partnership, creation, operation, publishing, client, supplier, counterparty` | 按实际行为方向：开发者 → 产品，供应商 → 客户 |
+| 信号 | `shared_address, shared_domain, shared_filing_agent, domain` | 两端为共享同一线索的主体，配 `edge_class: signal` 与 `signal_key` |
+| 身份 | `same_as_candidate` | 已确认人物 → 同名候选；配 `status: candidate`、`edge_class: signal` |
+| 其他 | `litigation_party, fund_manager, historical, candidate` | 按原始材料命名 |
+
+- `nature` 用于图形样式，取 `capital` 或 `business`。持股方向：股东 → 公司；任职：人 → 公司；发行：发行公司 → 产品。信号边不需要 nature。
+- 多根节点可选扩展：
+  - `role`：材料中的原始职务或身份称谓，例如“监事”“财务负责人”“普通合伙人兼执行事务合伙人”。
+  - `role_code`：归一化角色，取 `founder、shareholder、director、supervisor、executive、legal_rep、gp、lp、employee、advisor、partner、auditor、agent、other`。未识别的值只产生警告，便于各行业、各法域使用原始称谓。
+  - `edge_class`：`fact`（默认，直接事实）、`signal`（共同住所、共同域名、共同申报代理等线索）、`derived`（由其他事实推导，如共现伙伴边）。signal 与 derived 边不进入确认路径与控制链计算。
+  - `signal_key`：信号所共享的归一化值，例如完整登记住所、域名或代理机构名称，便于跨主体与跨案件聚合。
 - `percent` 为 0–100 的数值，金额与币种另存。认缴、实缴分别建事实；完整股东快照需记录日期和覆盖状态。
 - `status` 可为 `current, historical, candidate, disputed`。候选/争议边单独着色，默认核心网络不通过这类边推导确认路径。
 - `sources` 至少有一条具体出处。分析性连接使用 `type: candidate` 并写明推理依据；把无出处的待查线索留在调查日志。
 - `summary/text/detail/answer` 是直接展示给读者的字段，只写事实、必要未知及经营解释。去重说明、为何修改数据、核验动作和开发过程放到内部日志或 revision，不进入这些字段。
 - 路径使用可双向遍历的邻接关系寻找，但展示时恢复每条原始边的箭头、标签与状态。关系路径用于解释连接，控制链只沿已支持的持股/控制边计算。
+- 同一主体对的同一事项若有多期事实，分别建边并用 `valid_from/valid_to` 或 `status: historical` 区分；穿透计算采用最新一期的当前边，不把多期比例相加。
+- 推导出的人物共现边通常由 `analyze_network.py` 或构建器在运行时计算，无需写入数据；确需保存时使用 `edge_class: derived`，并在 `claim_ids` 中引用作为输入的主张。
 
 ## 来源 sources
 
@@ -168,6 +205,20 @@
 
 仅在存在足够可核验输入时建立财务情景模型，保存公式、输入来源、低中高假设和敏感性；模型输出使用明确的情景名称。未知数值使用 null，不填 0。
 
+## 构建期分析结果 `__computed`
+
+`build_report.py` 在验证通过后，对内存中的数据副本调用 `network_core.compute_analytics()`，把结果写入 HTML 内嵌数据的 `__computed` 键。dossier.json 本身不保存这些派生值，避免与事实记录脱节；`analyze_network.py --out` 可另存同结构的分析文件供核对。报告脚本在缺少 `__computed` 时回退到基于 entities/relationships 的简化计算。
+
+| 键 | 结构 | 计算口径 |
+| --- | --- | --- |
+| `root` | `{id, type}` | 根主体 ID 与类型 |
+| `ownership` | `{entity_id: {effective_pct, direct_pct, coverage, has_cycle, paths[{ids, edge_ids, pct}]}}` | 公司根计算各主体在根中的穿透权益；人物、投资方等根计算根在各主体中的穿透权益。只用当前、有来源、非候选的 `ownership/investment` 或 `nature: capital` 边，且 0 < percent ≤ 100；各路径比例连乘后相加，`coverage: partial` 表示股东快照合计不足 100%，`has_cycle` 标记交叉持股 |
+| `co_occurrence` | `{subject_id, rows[{partner_id, partner_name, score, shared_count, shared_active, shared_dissolved, organizations[{id, name, registry_status, subject_role, partner_role}], first_seen, last_seen}], by_person?}` | 统计确认的人物—组织边（含历史边）；组织的 `registry_status` 为 dissolved、revoked、deregistered 时计入 shared_dissolved。人物根以根为主体，其他根计算与根相连的关键人物并放入 `by_person` |
+| `confidence` | `{entities: {id: {grade, independent_sources}}, relationships: {id: {...}}}` | grade 取 `A_registry、B_multi_independent、C_single、signal、candidate、disputed`；独立来源数先按 `origin_id` 合并转载 |
+| `centrality` | `{id: {degree, betweenness}}` | 基于确认边的无向图 |
+
+这些数值服务于阅读与核对，判断仍以主张和原文为准：穿透比例是经济权益的算术结果，实际控制另依表决权、协议与治理材料；共现分数提示值得深查的伙伴，不单独构成关系结论。
+
 ## 增量更新
 
 保留稳定 ID。更正身份合并需要保存别名与合并依据；替代旧事实保留其历史时间。新增来源回填相关主体、关系、案例、问题和首页判断。
@@ -175,3 +226,5 @@
 `revision.kind` 使用 `research_update` 或 `presentation_only`。研究更新推进实际复核范围和 meta.snapshot_at/as_of，未重查主张保留原来的访问与统计日期；表现调整只更新 meta.generated_at，保留研究快照及来源访问日。可在 revision 中记录本次更新的 claim_ids 和保留的基线文件身份。
 
 运行 `validate_dossier.py --previous 旧数据.json 新数据.json` 检查消失的实体、关系、来源、图片、章节、问题和档案，以及本次已采用的主张与证据记录；有意替换通过 `revision.retired_ids` 写出 `{kind,id,reason}`，必要时保留 replacement_id。单独添加新章节不能完成更正传播。
+
+`diff_dossier.py 旧数据.json 新数据.json --md` 列出两版之间新增、删除与变更的主体、关系、持股比例、登记状态、主张与来源，用于撰写版本说明和复核更正是否传播到位。多个案件共享主体时，`merge_dossiers.py` 按 `identifiers` 精确匹配合并，冲突的本地 ID 加案件前缀，`x_cases` 记录每条记录的来源案件；仅姓名相同的人物以 `same_as_candidate` 边连接，留待四锚点复核。

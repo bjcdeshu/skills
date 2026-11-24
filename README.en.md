@@ -42,7 +42,7 @@
 <td width="600" valign="top">
   <sub>04 / INVESTIGATION</sub><br>
   <h3><a href="skills/investigation/">Company Investigations →</a></h3>
-  <p>Verify companies, ownership, key people, and product operations.</p>
+  <p>Verify companies, people, and investors; trace beneficial ownership and related networks.</p>
 </td>
 </tr>
 <tr>
@@ -77,17 +77,17 @@
 
 | Category | Skill | What it does | Output |
 | --- | --- | --- | --- |
-| [Company Investigations](skills/investigation/) | [Company Background Investigation](skills/investigation/company-background-investigation/SKILL.md) | Verify company identities, key people, ownership, funding, and product operations to support employment, partnership, and investment research. | Offline interactive HTML, relationship graph, structured research data, and evidence manifest |
+| [Company Investigations](skills/investigation/) | [Entity & Person Background Investigation](skills/investigation/company-background-investigation/SKILL.md) | Investigate any root entity (company, person, investor, institution, or product) in any industry: verify control and look-through ownership, officer roles and two-hop co-occurring partners, related entities, funding, and product operations for employment, partnership, investment, and related-party due diligence. | Offline interactive HTML (Ink & Seal theme, Graph 2.0, path finder), structured research data, evidence manifest, and stdlib analysis tools |
 
 <a id="previews"></a>
 
 ## Previews
 
-### [Company Background Investigation](skills/investigation/company-background-investigation/SKILL.md)
+### [Entity & Person Background Investigation](skills/investigation/company-background-investigation/SKILL.md)
 
-The DeepSeek report's relationship network connects the company to people, capital, and products, with linked entity profiles.
+Interactive report and relationship network in the Ink & Seal editorial theme (fictional demo): trace look-through ownership, officer roles, and entity paths from the root node, with linked profiles and source citations in the side drawer.
 
-[![Company Background Investigation: DeepSeek relationship network and entity profile](assets/previews/company-background-investigation.png)](skills/investigation/company-background-investigation/SKILL.md)
+[![Entity & Person Background Investigation: Ink & Seal interactive report and relationship network preview](assets/previews/company-background-investigation.png)](skills/investigation/company-background-investigation/SKILL.md)
 
 Explore full examples: [DeepSeek](https://research.zrainbow1257.com/reports/deepseek/) · [Tipsy](https://research.zrainbow1257.com/reports/tipsy/) · [MiniMax](https://research.zrainbow1257.com/reports/minimax/)
 
@@ -98,3 +98,7 @@ Explore full examples: [DeepSeek](https://research.zrainbow1257.com/reports/deep
 Share a skill folder, ZIP, or `SKILL.md` with an AI agent, along with the repository link. Follow the maintenance guide to organize the files, update both catalogs, and commit the changes.
 
 [Add, update & transfer →](docs/maintenance.en.md) &nbsp; · &nbsp; [Agent instructions](AGENTS.md)
+
+
+## Thanks
+Thanks to the [Linux Do](https://linux.do) community for their help.
