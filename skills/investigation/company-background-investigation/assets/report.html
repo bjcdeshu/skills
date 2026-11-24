@@ -1,66 +1,159 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-palette="ink">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="color-scheme" content="light">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
-  <title>公司背景调查</title>
+  <title>背景调查</title>
   <style>__DOSSIER_CSS__</style>
 </head>
 <body>
   <a class="skip" href="#overview">跳到正文</a>
-  <header class="mobilebar"><a href="#overview" id="mobileTitle">公司背景调查</a><button id="menuToggle" aria-expanded="false" aria-controls="sidebar">目录 ☰</button></header>
-  <aside class="sidebar" id="sidebar">
-    <a class="brand" href="#overview"><span class="brand-mark" aria-hidden="true">◈</span><span id="brandTitle">公司背景调查<small>人物 · 资本 · 业务</small></span></a>
-    <div class="nav-caption">阅读目录</div><nav id="reportNav" aria-label="报告目录"></nav>
-    <div class="nav-footer"><span class="live-dot"></span><span id="sidebarDate"></span><small id="sidebarCounts"></small></div>
+
+  <aside class="sidebar" id="sidebar" aria-label="报告目录与概况">
+    <a class="brand" href="#overview"><span class="brand-seal" aria-hidden="true">档</span><span class="brand-text" id="brandTitle">背景调查<small>人物 · 资本 · 业务</small></span></a>
+    <div class="nav-caption">阅读目录</div>
+    <nav id="reportNav" class="report-nav" aria-label="报告目录"></nav>
+    <div class="nav-footer"><span class="live-dot" aria-hidden="true"></span><span id="sidebarDate"></span><small id="sidebarCounts"></small></div>
   </aside>
+
   <main id="main">
-    <div class="topbar"><span>公司背景调查</span><div class="topbar-actions"><button class="quiet" id="openSearch" aria-haspopup="dialog" aria-controls="searchDialog">搜索档案 <kbd>/</kbd></button><button class="quiet" id="printReport">打印 / 保存 PDF ↗</button></div></div>
+    <header class="topbar" id="topbar">
+      <div class="reading-progress" aria-hidden="true"><div class="reading-progress-fill" id="readingProgress"></div></div>
+      <button class="icon-btn menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="sidebar"><span aria-hidden="true">☰</span><span class="menu-label">目录</span></button>
+      <a class="mobile-title" href="#overview" id="mobileTitle">背景调查</a>
+      <span class="topbar-kind" id="topbarKind">背景调查</span>
+      <div class="topbar-actions">
+        <div class="palette-switch" id="paletteSwitch" role="group" aria-label="配色方案">
+          <button type="button" data-palette-choice="ink" aria-pressed="true" title="墨与印"><i class="swatch swatch-ink" aria-hidden="true"></i><span class="sr-only">墨与印</span></button>
+          <button type="button" data-palette-choice="slate" aria-pressed="false" title="情报蓝"><i class="swatch swatch-slate" aria-hidden="true"></i><span class="sr-only">情报蓝</span></button>
+          <button type="button" data-palette-choice="celadon" aria-pressed="false" title="青瓷"><i class="swatch swatch-celadon" aria-hidden="true"></i><span class="sr-only">青瓷</span></button>
+        </div>
+        <button type="button" class="quiet theme-toggle" id="themeToggle" aria-pressed="false" aria-label="切换深色或浅色模式" title="深色 / 浅色"><span aria-hidden="true">◐</span></button>
+        <button type="button" class="quiet" id="openSearch" aria-haspopup="dialog" aria-controls="searchDialog"><span>搜索</span><kbd>/</kbd></button>
+        <button type="button" class="quiet" id="printReport"><span>打印</span><span class="hide-sm"> / PDF</span></button>
+      </div>
+    </header>
+
     <section class="section hero" id="overview" aria-labelledby="reportTitle">
-      <div class="eyebrow">公司画像与关键判断 <span id="reportDate"></span></div>
-      <div class="hero-grid"><div><h1 id="reportTitle"></h1><p class="hero-subtitle" id="reportSubtitle"></p><div class="hero-actions"><a class="primary" href="#network">展开关系网络 <span>↗</span></a><a class="secondary" href="#questions">核心问题 ↓</a></div></div><div id="heroMedia"></div></div>
-      <article class="judgment" id="judgment"></article>
-      <div class="business-metrics" id="businessMetrics"></div>
-      <div class="stats" id="reportStats"></div>
-      <div class="findings" id="findings"></div>
-      <nav class="reading-grid" id="readingEntries" aria-label="调查方向"></nav>
+      <div class="masthead">
+        <div class="eyebrow hero-eyebrow"><span id="reportEyebrow">画像与关键判断</span><span class="eyebrow-meta" id="reportDate"></span></div>
+        <h1 id="reportTitle"></h1>
+        <p class="hero-subtitle" id="reportSubtitle"></p>
+        <div class="hero-actions" id="heroActions"><a class="btn primary" href="#network">打开关系网络 <span aria-hidden="true">↓</span></a><a class="btn secondary" href="#questions">核心问题 <span aria-hidden="true">↓</span></a></div>
+      </div>
+      <div class="hero-grid">
+        <article class="judgment" id="judgment" aria-label="核心判断"></article>
+        <div class="hero-media" id="heroMedia"></div>
+      </div>
+      <div class="business-metrics" id="businessMetrics" aria-label="关键数字"></div>
+      <div class="findings" id="findings" aria-label="关键发现"></div>
     </section>
-    <section class="section" id="network" aria-labelledby="networkTitle">
-      <div class="section-head"><div><span class="eyebrow">人物、公司与产品</span><h2 id="networkTitle">关系网络</h2></div><p id="networkSummary"></p></div>
+
+    <section class="section network-section" id="network" aria-labelledby="networkTitle">
+      <div class="section-head"><div><span class="eyebrow" id="networkKicker">人物、公司与产品</span><h2 id="networkTitle">关系网络</h2></div><p id="networkSummary"></p></div>
       <div class="network-panel" id="networkPanel">
-        <div class="network-toolbar">
-          <div class="views" role="group" aria-label="网络视图"><button data-view="core" aria-pressed="true">核心网络</button><button data-view="all" aria-pressed="false">全部主体</button><button data-view="near" aria-pressed="false">所选周边</button></div>
-          <div class="network-search"><label for="networkSearch" class="sr-only">搜索主体、别名与工作</label><input id="networkSearch" type="search" placeholder="搜索主体、别名与工作" autocomplete="off" aria-controls="networkResults"><div id="networkResults" class="search-results" hidden></div></div>
-          <button class="secondary" id="networkFull" aria-pressed="false">全屏 ↗</button>
-        </div>
-        <div class="network-main">
-          <div class="network-canvas-column">
-            <div class="network-legend" id="networkLegend"></div>
-            <div class="network-viewport" id="networkViewport">
-              <svg id="networkSvg" role="group" aria-label="可交互的主体关系网络"><g id="networkLinks"></g><g id="networkNodes"></g></svg>
-              <div class="zoom-tools"><button id="zoomIn" aria-label="放大">＋</button><button id="zoomOut" aria-label="缩小">−</button><button id="fitGraph" aria-label="适应画布">适应</button><button id="resetGraph" aria-label="回到核心网络">重置</button></div>
-              <span class="canvas-hint">拖动主体或画布 · Ctrl + 滚轮缩放</span>
+        <div class="network-toolbar" id="networkToolbar">
+          <div class="toolbar-row toolbar-main">
+            <div class="seg" role="group" aria-label="网络视图"><button type="button" data-view="core" aria-pressed="true">核心</button><button type="button" data-view="all" aria-pressed="false">全部</button><button type="button" data-view="near" aria-pressed="false">周边</button></div>
+            <div class="seg" role="group" aria-label="布局方式"><button type="button" data-layout="radial" aria-pressed="true">放射</button><button type="button" data-layout="hierarchy" aria-pressed="false">层级·穿透</button><button type="button" data-layout="force" aria-pressed="false">力导</button></div>
+            <div class="network-search"><label for="networkSearch" class="sr-only">搜索主体、别名与工作</label><input id="networkSearch" type="search" placeholder="搜索主体、别名与工作" autocomplete="off" aria-controls="networkResults"><div id="networkResults" class="search-results" hidden></div></div>
+            <div class="tool-actions">
+              <button type="button" class="tool-btn" id="togglePathfinder" aria-pressed="false" aria-controls="pathfinderBar" title="寻路 (P)"><span aria-hidden="true">⇢</span> 寻路</button>
+              <button type="button" class="tool-btn" id="toggleListView" aria-pressed="false" aria-controls="networkListView" title="列表视图 (L)"><span aria-hidden="true">≣</span> 列表</button>
+              <button type="button" class="tool-btn" id="networkFull" aria-pressed="false" title="全屏 (F)"><span aria-hidden="true">⤢</span> 全屏</button>
             </div>
-            <div class="network-path" id="networkPath" aria-live="polite"></div>
           </div>
-          <aside class="network-inspector" id="networkInspector" aria-label="所选主体或关系详情"></aside>
+          <div class="toolbar-row toolbar-filters">
+            <div class="chip-group" id="networkTypeFilters" role="group" aria-label="按主体类型筛选"></div>
+            <span class="tool-sep" aria-hidden="true"></span>
+            <div class="chip-group" id="networkRelFilters" role="group" aria-label="按关系类型筛选"></div>
+            <button type="button" class="chip chip-toggle" id="toggleHistorical" aria-pressed="true"><i class="shape-icon is-clock" aria-hidden="true"></i>历史关系</button>
+          </div>
         </div>
-        <div class="network-footer"><span id="networkCount" aria-live="polite"></span><span>点击主体看档案 · 点击连线看逐条关系</span></div>
+        <div class="filter-banner" id="filterBanner" role="status" hidden></div>
+        <div class="pathfinder-bar" id="pathfinderBar" hidden>
+          <div class="pathfinder-inputs">
+            <label class="pf-field"><span>起点</span><select id="pathFrom"></select></label>
+            <button type="button" class="icon-btn" id="pathSwap" aria-label="交换起点与终点" title="交换">⇄</button>
+            <label class="pf-field"><span>终点</span><select id="pathTo"></select></label>
+            <label class="pf-check"><input type="checkbox" id="pathConfirmedOnly" checked> 仅确认关系</label>
+            <label class="pf-check"><input type="checkbox" id="pathIncludeHistory"> 含历史</label>
+          </div>
+          <div class="path-cards" id="pathCards" aria-live="polite"></div>
+        </div>
+        <div class="network-stage">
+          <div class="network-legend" id="networkLegend"></div>
+          <div class="network-viewport" id="networkViewport">
+            <svg id="networkSvg" role="group" aria-label="可交互的主体关系网络"><defs id="networkDefs"></defs><g id="networkLinks"></g><g id="networkEdgeLabels"></g><g id="networkNodes"></g></svg>
+            <div class="zoom-tools" role="group" aria-label="缩放"><button type="button" id="zoomIn" aria-label="放大">＋</button><button type="button" id="zoomOut" aria-label="缩小">−</button><button type="button" id="fitGraph" aria-label="适应画布">适应</button><button type="button" id="resetGraph" aria-label="回到核心网络">重置</button></div>
+            <div class="canvas-toast" id="canvasToast" role="status" hidden>点击图谱后可用滚轮缩放 · 或按住 Ctrl 滚动</div>
+            <div class="network-peek peek-card" id="networkPeek" aria-live="polite" hidden></div>
+            <svg class="network-minimap" id="networkMinimap" aria-hidden="true" hidden></svg>
+          </div>
+          <div class="network-list-view" id="networkListView" hidden></div>
+          <div class="network-path" id="networkPath" aria-live="polite"></div>
+        </div>
+        <div class="network-footer"><span id="networkCount" aria-live="polite"></span><span class="network-hint">单击选中 · 双击打开档案 · Shift + 单击设为寻路终点</span></div>
       </div>
     </section>
+
     <div id="reportSections"></div>
-    <section class="section" id="questions" aria-labelledby="questionsTitle"><div class="section-head"><div><span class="eyebrow" id="questionKicker">核心问题</span><h2 id="questionsTitle">读懂这家公司</h2></div></div><div id="questionList" class="questions"></div></section>
+
+    <section class="section" id="cooccurrenceSection" aria-labelledby="cooccurrenceTitle" hidden>
+      <div class="section-head"><div><span class="eyebrow" id="cooccurrenceKicker">二跳共现</span><h2 id="cooccurrenceTitle">反复同时出现的人物</h2></div></div>
+      <p class="section-intro" id="cooccurrenceIntro"></p>
+      <div id="cooccurrenceContent"></div>
+    </section>
+
+    <section class="section" id="questions" aria-labelledby="questionsTitle"><div class="section-head"><div><span class="eyebrow" id="questionKicker">核心问题</span><h2 id="questionsTitle">读懂调查对象</h2></div></div><div id="questionList" class="questions"></div></section>
+
     <section class="section" id="archives" aria-labelledby="archivesTitle"><div class="section-head"><div><span class="eyebrow">主体与原始记录</span><h2 id="archivesTitle">完整档案</h2></div><p id="archiveCount"></p></div><div id="archiveList"></div></section>
+
     <section class="section" id="timeline" aria-labelledby="timelineTitle"><div class="section-head"><div><span class="eyebrow">事件与时间</span><h2 id="timelineTitle">时间线</h2></div></div><div class="timeline" id="timelineList"></div></section>
+
     <section class="section" id="sources" aria-labelledby="sourcesTitle"><div class="section-head"><div><span class="eyebrow">完整出处索引</span><h2 id="sourcesTitle">资料来源</h2></div><p id="sourceCount"></p></div><div class="source-tools"><label for="sourceSearch" class="sr-only">搜索来源</label><input id="sourceSearch" type="search" placeholder="搜索标题、发布者、编号或定位信息"><span id="sourceSearchCount" aria-live="polite"></span></div><div class="source-index" id="sourceList"></div></section>
+
+    <section class="print-only print-relations" id="printRelations" aria-labelledby="printRelationsTitle"><h2 id="printRelationsTitle">关系明细表</h2><div id="printRelationsContent"></div></section>
     <section class="print-evidence" id="printEvidence" aria-labelledby="printEvidenceTitle"><h2 id="printEvidenceTitle">判断与依据</h2><div id="printEvidenceContent"></div></section>
+
     <footer class="report-footer"><span id="footerTitle"></span><a href="#overview">回到顶部 ↑</a></footer>
   </main>
-  <dialog id="dossierDialog" aria-labelledby="dossierTitle"><div class="dialog-bar"><span>主体档案</span><button id="closeDossier" aria-label="关闭主体档案">关闭 ×</button></div><div id="dossierContent"></div></dialog>
-  <dialog id="evidenceDialog" aria-labelledby="evidenceTitle"><div class="dialog-bar"><h2 id="evidenceTitle">判断与依据</h2><button id="closeEvidence" aria-label="关闭判断依据">关闭 ×</button></div><div id="evidenceContent"></div></dialog>
-  <dialog id="searchDialog" class="site-search-dialog" aria-labelledby="searchTitle"><div class="dialog-bar"><h2 id="searchTitle">搜索档案</h2><button id="closeSearch" aria-label="关闭搜索">关闭 ×</button></div><div class="site-search-input"><label for="globalSearch" class="sr-only">搜索整份报告</label><input id="globalSearch" type="search" placeholder="搜索人物、公司、产品、正文或来源" autocomplete="off" aria-controls="globalSearchResults"><p id="globalSearchStatus" aria-live="polite"></p></div><div id="globalSearchResults" class="site-search-results"></div></dialog>
+
+  <div id="drawerBackdrop" class="drawer-backdrop" hidden></div>
+  <aside id="drawer" class="drawer" role="dialog" aria-modal="false" aria-labelledby="drawerTitle" tabindex="-1" hidden>
+    <header class="drawer-head">
+      <div class="drawer-nav">
+        <button type="button" class="icon-btn" id="drawerBack" aria-label="返回上一层" title="返回 (Alt + ←)" disabled>←</button>
+        <nav class="drawer-crumb" id="drawerCrumb" aria-label="浏览路径"></nav>
+        <div class="drawer-actions">
+          <button type="button" class="quiet" id="drawerLocate" title="在关系网络中定位">在图中定位</button>
+          <button type="button" class="quiet" id="drawerCopyLink" title="复制本档案链接">复制链接</button>
+          <button type="button" class="icon-btn" id="closeDrawer" aria-label="关闭侧栏" title="关闭 (Esc)">×</button>
+        </div>
+      </div>
+      <div class="drawer-title-row"><span class="drawer-badge" id="drawerBadge"></span><h2 id="drawerTitle" tabindex="-1"></h2></div>
+      <div class="drawer-tabs" id="drawerTabs" role="tablist" aria-label="档案分区"></div>
+    </header>
+    <div class="drawer-body" id="drawerBody"></div>
+  </aside>
+
+  <div id="sourcePopover" class="source-popover" role="tooltip" hidden></div>
+
+  <dialog id="lightboxDialog" class="lightbox" aria-label="图片放大查看">
+    <div class="lightbox-bar">
+      <div class="lightbox-zoom" role="group" aria-label="缩放"><button type="button" id="lightboxZoomOut" aria-label="缩小">−</button><button type="button" id="lightboxReset" aria-label="适应窗口">适应</button><button type="button" id="lightboxZoomIn" aria-label="放大">＋</button></div>
+      <button type="button" class="lightbox-close" id="closeLightbox" aria-label="关闭图片查看">关闭 ×</button>
+    </div>
+    <div class="lightbox-stage" id="lightboxStage"><img id="lightboxImg" alt=""></div>
+    <button type="button" class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="上一张">‹</button>
+    <button type="button" class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="下一张">›</button>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </dialog>
+
+  <dialog id="searchDialog" class="site-search-dialog" aria-labelledby="searchTitle"><div class="dialog-bar"><h2 id="searchTitle">搜索档案</h2><button type="button" id="closeSearch" aria-label="关闭搜索">关闭 ×</button></div><div class="site-search-input"><label for="globalSearch" class="sr-only">搜索整份报告</label><input id="globalSearch" type="search" placeholder="搜索人物、公司、产品、正文或来源" autocomplete="off" aria-controls="globalSearchResults"><p id="globalSearchStatus" aria-live="polite"></p></div><div id="globalSearchResults" class="site-search-results"></div></dialog>
+
   <noscript><p class="noscript">请启用 JavaScript 查看报告正文与关系网络。</p></noscript>
   <script id="dossierData" type="application/json">__DOSSIER_JSON__</script>
   <script>__DOSSIER_JS__</script>
