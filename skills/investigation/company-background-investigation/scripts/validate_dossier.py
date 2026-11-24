@@ -38,6 +38,41 @@ MANUAL_REVIEW = [
     "逐项核对注册资本、认缴、实缴、融资到账、预算、拟支持、拨付、收入、流水和利润的口径。",
     "核对关系路径中的连接依据，以及控制链的持股方向、比例、日期与证据。",
 ]
+# Additive v1 extensions (all optional; absent fields keep legacy behaviour).
+REGISTRY_STATUSES = {"active", "dissolved", "revoked", "deregistered", "unknown"}
+DISSOLVED_STATUSES = {"dissolved", "revoked", "deregistered"}
+EDGE_CLASSES = {"fact", "signal", "derived"}
+CANDIDATE_TYPES = {"candidate", "same_as_candidate"}
+ROLE_CODES = {
+    "founder", "shareholder", "director", "supervisor", "executive", "legal_rep",
+    "gp", "lp", "partner", "employee", "advisor", "auditor", "agent", "other",
+}
+ANCHOR_VALUES = {"match", "conflict", "unknown"}
+IDENTITY_DECISIONS = {"merge", "candidate", "separate"}
+MANUAL_REVIEW_BY_ROOT = {
+    "company": MANUAL_REVIEW,
+    "person": [
+        "按姓名、机构/登记号、时间连续性、地域/关系网四个锚点核对同名、同音与转写身份，并核对出处支持与来源独立性。",
+        "逐项核对任职、持股、创办与历史角色的时间区间、主体登记状态（存续/注销/吊销）与原文定位。",
+        "核对共现伙伴与信号关系（共同地址、域名、备案代理等）的事实依据；信号边不作确认的控制或合作路径。",
+    ],
+    "investor": [
+        "核对同名身份、出处支持与来源独立性。",
+        "逐项核对认缴、实缴、基金规模、投资金额、轮次、交割与到账阶段的口径及接收主体。",
+        "核对投资组合与控制链的持股方向、比例、日期与证据；信号边不作确认路径。",
+    ],
+    "product": [
+        "核对产品/品牌与同名对象的身份标识（型号、应用 ID、域名、注册号）及来源独立性。",
+        "逐项核对权利主体、开发、制造、运营、发行与销售角色的时间和证据。",
+        "核对销量、下载、评分、收入等指标的市场、平台、统计期间与口径。",
+    ],
+}
+MANUAL_REVIEW_BY_ROOT["institution"] = MANUAL_REVIEW_BY_ROOT["investor"]
+MANUAL_REVIEW_BY_ROOT["brand"] = MANUAL_REVIEW_BY_ROOT["product"]
+
+
+def manual_review_for(root_type):
+    return list(MANUAL_REVIEW_BY_ROOT.get(root_type, MANUAL_REVIEW))
 
 
 def finite_number(value):
@@ -159,6 +194,7 @@ def read_asset(asset, base_dir):
 
 def validate_dossier(data, base_dir=".", previous=None):
     errors, warnings = [], []
+    manual_review = list(MANUAL_REVIEW)
 
     def issue(bucket, code, path, message):
         bucket.append({"code": code, "path": path, "message": message})
@@ -172,7 +208,7 @@ def validate_dossier(data, base_dir=".", previous=None):
     def result(counts=None, reachability=None):
         return {"ok": not errors, "errors": errors, "warnings": warnings,
                 "counts": counts or {}, "reachability": reachability or {},
-                "manual_review": MANUAL_REVIEW}
+                "manual_review": manual_review}
 
     if not isinstance(data, dict):
         error("document_type", "$", "顶层必须是 JSON 对象")
@@ -231,6 +267,27 @@ def validate_dossier(data, base_dir=".", previous=None):
     root_id = meta.get("root_id")
     if not isinstance(root_id, str) or root_id not in ids["entities"]:
         error("missing_root", "$.meta.root_id", "根主体必须指向已存在的 entities ID")
+    entity_types = {row.get("id"): row.get("type") for row, _ in tables["entities"] if isinstance(row.get("id"), str)}
+    root_type = entity_types.get(root_id) if isinstance(root_id, str) else None
+    if "root_type" in meta:
+        declared_root = meta["root_type"]
+        if not isinstance(declared_root, str) or declared_root not in ENTITY_TYPES:
+            error("root_type", "$.meta.root_type", "root_type 须为 " + ", ".join(sorted(ENTITY_TYPES)))
+        elif root_type and declared_root != root_type:
+            warn("root_type_mismatch", "$.meta.root_type", f"root_type 为 {declared_root}，但根主体类型为 {root_type}")
+        elif not root_type:
+            root_type = declared_root
+    manual_review = manual_review_for(root_type)
+    if "purpose" in meta and meta["purpose"] is not None:
+        text_field(meta, "$.meta", "purpose")
+    if "ui_labels" in meta:
+        labels = meta["ui_labels"]
+        if not isinstance(labels, dict):
+            error("ui_labels_type", "$.meta.ui_labels", "ui_labels 须为 {键: 文字} 对象")
+        else:
+            for key, value in labels.items():
+                if not isinstance(value, str) or not value.strip():
+                    error("ui_labels_value", "$.meta.ui_labels." + str(key), "界面文字须为非空字符串")
 
     reserved_sections = {"overview", "network", "questions", "archives", "timeline", "sources"}
     for row, path in tables["sections"]:
@@ -252,6 +309,7 @@ def validate_dossier(data, base_dir=".", previous=None):
                 if not isinstance(target, str) or target not in targets:
                     error("navigation_target", path + ".target", "target 须为模板锚点或已存在的 sections.id")
 
+    identifier_owners = {}
     for row, path in tables["entities"]:
         require(row, path, ("name", "type", "summary", "sources"))
         text_field(row, path, "name")
@@ -260,6 +318,44 @@ def validate_dossier(data, base_dir=".", previous=None):
             error("entity_type", path + ".type", "主体类型须为 " + ", ".join(sorted(ENTITY_TYPES)))
         if "status" in row and (not isinstance(row["status"], str) or row["status"] not in ENTITY_STATUSES):
             error("entity_status", path + ".status", "主体状态须为 current、historical 或 candidate")
+        if "registry_status" in row and row["registry_status"] is not None and (
+                not isinstance(row["registry_status"], str) or row["registry_status"] not in REGISTRY_STATUSES):
+            error("registry_status", path + ".registry_status", "登记状态须为 " + ", ".join(sorted(REGISTRY_STATUSES)))
+        if "identifiers" in row:
+            identifiers = row["identifiers"]
+            if not isinstance(identifiers, list):
+                error("identifiers_type", path + ".identifiers", "identifiers 须为 {scheme,value,jurisdiction?} 数组")
+            else:
+                for index, item in enumerate(identifiers):
+                    item_path = f"{path}.identifiers[{index}]"
+                    if not isinstance(item, dict):
+                        error("identifier_record", item_path, "标识须为 {scheme,value,jurisdiction?} 对象")
+                        continue
+                    text_field(item, item_path, "scheme")
+                    text_field(item, item_path, "value")
+                    if item.get("jurisdiction") is not None:
+                        text_field(item, item_path, "jurisdiction")
+                    if isinstance(item.get("scheme"), str) and isinstance(item.get("value"), str) and item["value"].strip():
+                        key = (item["scheme"].strip().lower(), item["value"].strip().lower())
+                        owner = identifier_owners.setdefault(key, row.get("id"))
+                        if owner != row.get("id"):
+                            warn("duplicate_identifier", item_path, f"标识 {item['scheme']}={item['value']} 同时出现在 {owner}；同一主体请合并，或核对录入")
+        if "identity_basis" in row:
+            basis, basis_path = row["identity_basis"], path + ".identity_basis"
+            if not isinstance(basis, dict):
+                error("identity_basis_type", basis_path, "identity_basis 须为 {anchors, decision, notes?} 对象")
+            else:
+                anchors = basis.get("anchors")
+                if not isinstance(anchors, dict):
+                    error("identity_anchors", basis_path + ".anchors", "anchors 须为对象，例如 {name, organization, time, place_or_network}")
+                else:
+                    for key, value in anchors.items():
+                        if value not in ANCHOR_VALUES:
+                            warn("identity_anchor_value", f"{basis_path}.anchors.{key}", "锚点取值建议为 match、conflict 或 unknown")
+                if basis.get("decision") not in IDENTITY_DECISIONS:
+                    error("identity_decision", basis_path + ".decision", "decision 须为 merge、candidate 或 separate")
+                if basis.get("notes") is not None:
+                    text_field(basis, basis_path, "notes")
         evidence(row, path)
         for field in ("fields", "facts", "career", "sections"):
             entries = row.get(field, [])
@@ -295,6 +391,17 @@ def validate_dossier(data, base_dir=".", previous=None):
             error("disputed_type", path + ".disputed", "disputed 必须为布尔值")
         if row.get("from") == row.get("to") and row.get("from"):
             warn("self_relation", path, "关系两端为同一主体，请核对原始事实")
+        if "edge_class" in row and (not isinstance(row["edge_class"], str) or row["edge_class"] not in EDGE_CLASSES):
+            error("edge_class", path + ".edge_class", "edge_class 须为 fact、signal 或 derived")
+        for name in ("role", "signal_key"):
+            if name in row and row[name] is not None:
+                text_field(row, path, name)
+        if "role_code" in row and row["role_code"] is not None:
+            code = row["role_code"]
+            if not isinstance(code, str):
+                error("role_code_type", path + ".role_code", "role_code 须为字符串")
+            elif code.strip() and code.strip() not in ROLE_CODES:
+                warn("unknown_role_code", path + ".role_code", "未识别的 role_code：" + code + "；可用 " + ", ".join(sorted(ROLE_CODES)))
 
     for row, path in tables["sources"]:
         require(row, path, ("title", "url", "kind", "observed_at"))
@@ -623,15 +730,19 @@ def validate_dossier(data, base_dir=".", previous=None):
 
     adjacency = {ident: set() for ident in ids["entities"]}
     pairs, confirmed_pairs, candidates, disputed = set(), set(), set(), set()
-    candidate_edges = disputed_edges = 0
+    candidate_edges = disputed_edges = signal_edges = derived_edges = 0
     for row, _ in tables["relationships"]:
         start, end = row.get("from"), row.get("to")
         if not isinstance(start, str) or not isinstance(end, str) or start not in adjacency or end not in adjacency:
             continue
         pair = tuple(sorted((start, end)))
         pairs.add(pair)
-        candidate = row.get("status") == "candidate" or row.get("type") == "candidate"
+        candidate = row.get("status") == "candidate" or row.get("type") in CANDIDATE_TYPES
         conflict = row.get("status") == "disputed" or row.get("disputed") is True
+        signal = row.get("edge_class") == "signal"
+        derived = row.get("edge_class") == "derived"
+        signal_edges += signal
+        derived_edges += derived
         if candidate:
             candidates.update((start, end))
             candidate_edges += 1
@@ -640,7 +751,7 @@ def validate_dossier(data, base_dir=".", previous=None):
             disputed_edges += 1
         references = row.get("sources", [])
         backed = isinstance(references, list) and bool(references) and all(isinstance(x, str) and x in ids["sources"] for x in references)
-        if not candidate and not conflict and backed:
+        if not candidate and not conflict and not signal and not derived and backed:
             adjacency[start].add(end)
             adjacency[end].add(start)
             confirmed_pairs.add(pair)
@@ -656,12 +767,13 @@ def validate_dossier(data, base_dir=".", previous=None):
     if reachable:
         for ident in sorted(unreachable):
             warn("unreachable_from_root", "$.entities", f"{ident} 没有经带来源的确认关系连接到根主体；候选/争议连接不作确认路径")
+    count_type = lambda kind: sum(r.get("type") == kind for r, _ in tables["entities"])
     counts = {
         "entities": len(tables["entities"]),
-        "people": sum(r.get("type") == "person" for r, _ in tables["entities"]),
-        "companies": sum(r.get("type") == "company" for r, _ in tables["entities"]),
-        "products": sum(r.get("type") == "product" for r, _ in tables["entities"]),
-        "brands": sum(r.get("type") == "brand" for r, _ in tables["entities"]),
+        "people": count_type("person"),
+        "companies": count_type("company"),
+        "products": count_type("product"),
+        "brands": count_type("brand"),
         "entity_pairs": len(pairs), "relationship_facts": len(tables["relationships"]),
         "confirmed_pairs": len(confirmed_pairs), "candidate_relationships": candidate_edges,
         "disputed_relationships": disputed_edges,
@@ -670,8 +782,13 @@ def validate_dossier(data, base_dir=".", previous=None):
         "archives": len(tables["archives"]), "findings": len(tables["findings"]),
         "timeline_events": len(tables["timeline"]),
         "claims": len(tables["claims"]), "evidence_files": sum(r.get("status") == "stored" for r, _ in tables["evidence_manifest"]),
+        "investors": count_type("investor"),
+        "institutions": count_type("institution"),
+        "signal_relationships": signal_edges,
+        "derived_relationships": derived_edges,
+        "dissolved_entities": sum(r.get("registry_status") in DISSOLVED_STATUSES for r, _ in tables["entities"]),
     }
-    return result(counts, {"root_id": root_id, "confirmed_ids": sorted(reachable),
+    return result(counts, {"root_id": root_id, "root_type": root_type, "confirmed_ids": sorted(reachable),
                            "unreachable_ids": sorted(unreachable),
                            "candidate_endpoint_ids": sorted(candidates),
                            "disputed_endpoint_ids": sorted(disputed)})
@@ -683,9 +800,12 @@ def print_report(report, as_json=False):
         return
     print("验证通过" if report["ok"] else "验证失败")
     labels = {"entities": "主体", "people": "人物", "companies": "公司", "products": "产品",
-              "brands": "品牌", "entity_pairs": "主体配对", "relationship_facts": "关系事实",
+              "brands": "品牌", "investors": "投资方", "institutions": "机构", "entity_pairs": "主体配对",
+              "relationship_facts": "关系事实", "signal_relationships": "信号关系",
+              "dissolved_entities": "注销/吊销主体",
               "sources": "来源", "images": "图片", "sections": "章节", "questions": "问题", "archives": "档案"}
-    print("；".join(f"{label} {report['counts'].get(key, 0)}" for key, label in labels.items()))
+    print("；".join(f"{label} {report['counts'].get(key, 0)}" for key, label in labels.items()
+                   if key in report["counts"] or key in {"entities", "sources"}))
     for level, label in (("errors", "错误"), ("warnings", "警告")):
         for item in report[level]:
             print(f"{label} [{item['code']}] {item['path']}: {item['message']}")
@@ -695,6 +815,11 @@ def print_report(report, as_json=False):
 
 
 def main():
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError):
+            pass
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("dossier", type=Path, help="待检查的 JSON 文件")
     parser.add_argument("--previous", type=Path, help="用于检查消失项的旧版 JSON")
